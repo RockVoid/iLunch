@@ -182,11 +182,99 @@ class _AuthenticatorState extends State<Authenticator>
                 ),
               ],
             ),
-            Column(
-              children: const [
-                Text("Cadastro"),
-              ],
-            )
+            Center(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text("Cadastro",
+                          style: TextStyle(
+                            color: Color(0xffea1d2c),
+                          ),
+                        ),
+                      ),
+                      IconButtom(
+                        onPressed: () {},
+                        icon: FaIcon(FontAwesomeIcons.facebook),
+                      ),
+                      Divider(),
+                      IconButtom(
+                        onPressed: () {},
+                        icon: FaIcon(FontAwesomeIcons.google),
+                      ),
+                    ],
+                  ),
+                  Divider(),
+                  Divider(),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xffffffff),
+                      labelText: "Nome Completo",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0x00000000)),
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xffffffff),
+                      labelText: "E-mail",
+                      hintText: "exemplo@gmai.com",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0x000000000)),
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xffffffff),
+                      labelText: "Senha",
+                      hintText: "Senha forte!",
+                      //adicionar um obscure text
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0x000000000)),
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xffffffff),
+                      labelText: "Confirmar senha",
+                      hintText: "Redigite a senha!",
+                      // add um obscute text
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0x000000000)),
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: const Color(0xffea1d2c),
+                      fixedSize: const Size(3000, 55),
+                    ),
+                    onPressed: () {},
+                    child: Text("Cadastrar",
+                      style: TextStyle(
+                        color: Color(0xfff6f6f6),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
           ],
         ),
       ),
