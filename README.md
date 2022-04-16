@@ -1,6 +1,6 @@
 # ilunch
 
-A new Flutter project.
+Mobile app for small food business have more results spending almost nothing.
 
 ## Getting Started
 
