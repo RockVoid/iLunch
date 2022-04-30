@@ -16,6 +16,7 @@ class _iLunchState extends State<iLunch> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Authenticator(),
     );
   }
