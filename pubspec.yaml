@@ -35,10 +35,27 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.4
   font_awesome_flutter: ^10.1.0
+  
+
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_native_splash: ^1.2.0
+  flutter_launcher_icons: ^0.9.1
+
+flutter_native_splash:
+  color: "#EA1D2C"
+  image: "assets/iLunch.png"
+  android: true
+  ios: true
+flutter_icons:
+  image_path: "assets/iLunch.png"
+  ios: true
+  remove_alpha_ios: true
+  android: "launcher_icon"
+  adaptive_icon_background: "#EA1D2C"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -74,11 +91,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Roclwell
-      fonts:
-        - asset: fonts/Rockwell Negrito.ttf
-        - asset: fonts/Rockwell Regular.ttf
+  #  - family: Roclwell
+  #    fonts:
+  #      - asset: fonts/Rockwell-Negrito.ttf
+  #      - asset: fonts/Rockwell-Regular.ttf
 
   # fonts:
   #   - family: Schyler

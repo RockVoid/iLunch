@@ -188,18 +188,19 @@ class _AuthenticatorState extends State<Authenticator>
                   Row(
                     children: [
                       Expanded(
-                        child: Text("Cadastro",
+                        child: Text(
+                          "Cadastro",
                           style: TextStyle(
                             color: Color(0xffea1d2c),
                           ),
                         ),
                       ),
-                      IconButtom(
+                      IconButton(
                         onPressed: () {},
                         icon: FaIcon(FontAwesomeIcons.facebook),
                       ),
                       Divider(),
-                      IconButtom(
+                      IconButton(
                         onPressed: () {},
                         icon: FaIcon(FontAwesomeIcons.google),
                       ),
@@ -265,7 +266,8 @@ class _AuthenticatorState extends State<Authenticator>
                       fixedSize: const Size(3000, 55),
                     ),
                     onPressed: () {},
-                    child: Text("Cadastrar",
+                    child: Text(
+                      "Cadastrar",
                       style: TextStyle(
                         color: Color(0xfff6f6f6),
                       ),
@@ -274,7 +276,6 @@ class _AuthenticatorState extends State<Authenticator>
                 ],
               ),
             ),
-
           ],
         ),
       ),
