@@ -1,8 +1,38 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          titleSpacing: 0.0,
+          title: Transform(
+            transform: Matrix4.translationValues(0.0, 0.0, 0.0),
+            child: Text(
+              "Detalhes Pessoais",
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          ),
+          actions: [
+            TextButton(
+              style: TextButton.styleFrom(
+                alignment: Alignment(0, 0.12),
+                textStyle: const TextStyle(fontSize: 15),
+              ),
+              onPressed: null,
+              child: const Text(
+                "Editar",
+                style:
+                    TextStyle(color: Colors.red, fontWeight: FontWeight.w600),
+              ),
+            )
+          ],
+        ),
         body: Center(
             child: Padding(
           padding: EdgeInsets.all(15.0),
@@ -30,7 +60,150 @@ class Profile extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                   fontSize: 24),
-            )
+            ),
+            Text(
+              "guilhermealencar@gmail.com",
+              style: TextStyle(color: Colors.grey.shade800, fontSize: 12),
+            ),
+            Text(
+              "+91 xxxxxxxxxx",
+              style: TextStyle(color: Colors.grey.shade800, fontSize: 12),
+            ),
+            Text(
+              "Rua do Benfica, 777",
+              style: TextStyle(color: Colors.grey.shade800, fontSize: 12),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                TextButton.icon(
+                  icon: Icon(Icons.tab),
+                  onPressed: null,
+                  label: Text("Salvos"),
+                  style: TextButton.styleFrom(elevation: 0.8),
+                ),
+                TextButton.icon(
+                  icon: Icon(Icons.notification_important_outlined),
+                  onPressed: null,
+                  label: Text("Notificações"),
+                  style: TextButton.styleFrom(elevation: 0.8),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 80,
+            ),
+            SizedBox(
+                height: 60,
+                width: 300,
+                child: OutlinedButton.icon(
+                  onPressed: () {},
+                  icon: Text(
+                    "Historico de Pedidos",
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                  label: Icon(
+                    Icons.add,
+                    size: 18,
+                  ),
+                  style: OutlinedButton.styleFrom(
+                      primary: Colors.black, elevation: 1),
+                )),
+            SizedBox(
+              height: 30,
+            ),
+            SizedBox(
+                height: 60,
+                width: 300,
+                child: OutlinedButton.icon(
+                  onPressed: () {},
+                  label: Icon(Icons.add, size: 18),
+                  icon: Text(
+                    "Ajuda",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                      primary: Colors.black, elevation: 1),
+                )),
+            SizedBox(
+              height: 40,
+            ),
+            RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                      text: ' Enviar um Feedback',
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => print('click'),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 16))
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 17,
+            ),
+            RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                      text: ' Reportar Algo',
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => print('click'),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 16))
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 17,
+            ),
+            RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                      text: ' Avalie-nos',
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => print('click'),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 16))
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 17,
+            ),
+            RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                      text: ' Sair',
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => print('click'),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 16,
+                      ))
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 6,
+            ),
           ]),
         )),
       );
