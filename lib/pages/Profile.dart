@@ -1,5 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:ilunch/pages/Pages-Profile/Edit.dart';
+import 'package:ilunch/pages/Pages-Profile/Evaluate.dart';
+import 'package:ilunch/pages/Pages-Profile/Feedback.dart';
+import 'package:ilunch/pages/Pages-Profile/Help.dart';
+import 'package:ilunch/pages/Pages-Profile/Historic.dart';
+import 'package:ilunch/pages/Pages-Profile/Notifications.dart';
+import 'package:ilunch/pages/Pages-Profile/Report.dart';
+import 'package:ilunch/pages/Pages-Profile/Saves.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -24,7 +32,10 @@ class Profile extends StatelessWidget {
                 alignment: Alignment(0, 0.12),
                 textStyle: const TextStyle(fontSize: 15),
               ),
-              onPressed: null,
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Edit()));
+              },
               child: const Text(
                 "Editar",
                 style:
@@ -82,13 +93,19 @@ class Profile extends StatelessWidget {
               children: [
                 TextButton.icon(
                   icon: Icon(Icons.tab),
-                  onPressed: null,
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => Saves()));
+                  },
                   label: Text("Salvos"),
                   style: TextButton.styleFrom(elevation: 0.8),
                 ),
                 TextButton.icon(
                   icon: Icon(Icons.notification_important_outlined),
-                  onPressed: null,
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Notifications()));
+                  },
                   label: Text("Notificações"),
                   style: TextButton.styleFrom(elevation: 0.8),
                 ),
@@ -101,7 +118,10 @@ class Profile extends StatelessWidget {
                 height: 60,
                 width: 300,
                 child: OutlinedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Historic()));
+                  },
                   icon: Text(
                     "Historico de Pedidos",
                     style: TextStyle(
@@ -122,7 +142,10 @@ class Profile extends StatelessWidget {
                 height: 60,
                 width: 300,
                 child: OutlinedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => Help()));
+                  },
                   label: Icon(Icons.add, size: 18),
                   icon: Text(
                     "Ajuda",
@@ -141,7 +164,10 @@ class Profile extends StatelessWidget {
                   TextSpan(
                       text: ' Enviar um Feedback',
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => print('click'),
+                        ..onTap = () => {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Feedbacks()))
+                            },
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
@@ -158,7 +184,10 @@ class Profile extends StatelessWidget {
                   TextSpan(
                       text: ' Reportar Algo',
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => print('click'),
+                        ..onTap = () => {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Report()))
+                            },
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
@@ -175,7 +204,10 @@ class Profile extends StatelessWidget {
                   TextSpan(
                       text: ' Avalie-nos',
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => print('click'),
+                        ..onTap = () => {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Evaluate()))
+                            },
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
