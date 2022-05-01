@@ -35,6 +35,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.4
   font_awesome_flutter: ^10.1.0
+  pixel_perfect: ^1.0.8
+  flutter_settings_screens: ^0.2.2+1
   
 
   
