@@ -27,20 +27,13 @@ class Profile extends StatelessWidget {
             ),
           ),
           actions: [
-            TextButton(
-              style: TextButton.styleFrom(
-                alignment: Alignment(0, 0.12),
-                textStyle: const TextStyle(fontSize: 15),
-              ),
+            IconButton(
               onPressed: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) => Edit()));
               },
-              child: const Text(
-                "Editar",
-                style:
-                    TextStyle(color: Colors.red, fontWeight: FontWeight.w600),
-              ),
+              icon: Icon(Icons.settings),
+              color: Colors.black,
             )
           ],
         ),
@@ -129,7 +122,7 @@ class Profile extends StatelessWidget {
                     ),
                   ),
                   label: Icon(
-                    Icons.add,
+                    Icons.arrow_forward_ios_outlined,
                     size: 18,
                   ),
                   style: OutlinedButton.styleFrom(
@@ -146,7 +139,7 @@ class Profile extends StatelessWidget {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) => Help()));
                   },
-                  label: Icon(Icons.add, size: 18),
+                  label: Icon(Icons.arrow_forward_ios_outlined, size: 18),
                   icon: Text(
                     "Ajuda",
                     textAlign: TextAlign.left,
@@ -217,21 +210,6 @@ class Profile extends StatelessWidget {
             ),
             SizedBox(
               height: 17,
-            ),
-            RichText(
-              text: TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                      text: ' Sair',
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () => print('click'),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 16,
-                      ))
-                ],
-              ),
             ),
             SizedBox(
               height: 6,
