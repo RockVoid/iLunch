@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ilunch/pages/homepage.dart';
+import 'package:ilunch/widgets/bottom_navigation.dart';
 
 class Authenticator extends StatefulWidget {
   const Authenticator({Key? key}) : super(key: key);
@@ -100,7 +100,7 @@ class _AuthenticatorState extends State<Authenticator>
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => Home()));
+                              MaterialPageRoute(builder: (context) => BottomNavigation()));
                         },
                         child: const Text(
                           "Login",

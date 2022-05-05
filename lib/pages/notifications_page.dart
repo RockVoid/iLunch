@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Feedbacks extends StatelessWidget {
+class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
@@ -12,7 +12,7 @@ class Feedbacks extends StatelessWidget {
         ),
         body: Center(
             child: Text(
-          "Feedback",
+          "Notificações",
           style: TextStyle(fontSize: 60),
         )),
       );

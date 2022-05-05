@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Evaluate extends StatelessWidget {
+class HistoricPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
@@ -12,7 +12,7 @@ class Evaluate extends StatelessWidget {
         ),
         body: Center(
             child: Text(
-          "Avaliar",
+          "Historico",
           style: TextStyle(fontSize: 60),
         )),
       );
