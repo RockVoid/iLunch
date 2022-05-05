@@ -37,6 +37,8 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   pixel_perfect: ^1.0.8
   flutter_settings_screens: ^0.2.2+1
+  google_fonts: ^2.3.2
+  carousel_slider: ^4.1.1
   
 
   
