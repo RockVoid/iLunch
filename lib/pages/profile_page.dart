@@ -1,15 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:ilunch/pages/Pages-Profile/Edit.dart';
-import 'package:ilunch/pages/Pages-Profile/Evaluate.dart';
-import 'package:ilunch/pages/Pages-Profile/Feedback.dart';
-import 'package:ilunch/pages/Pages-Profile/Help.dart';
-import 'package:ilunch/pages/Pages-Profile/Historic.dart';
-import 'package:ilunch/pages/Pages-Profile/Notifications.dart';
-import 'package:ilunch/pages/Pages-Profile/Report.dart';
-import 'package:ilunch/pages/Pages-Profile/Saves.dart';
+import 'package:ilunch/pages/edit_page.dart';
+import 'package:ilunch/pages/feedback_page.dart';
+import 'package:ilunch/pages/help.dart';
+import 'package:ilunch/pages/historic_page.dart';
+import 'package:ilunch/pages/notifications_page.dart';
+import 'package:ilunch/pages/report_page.dart';
+import 'package:ilunch/pages/saves.dart';
 
-class Profile extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
@@ -30,7 +29,7 @@ class Profile extends StatelessWidget {
             IconButton(
               onPressed: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Edit()));
+                    .push(MaterialPageRoute(builder: (context) => EditPage()));
               },
               icon: Icon(Icons.settings),
               color: Colors.black,
@@ -97,7 +96,7 @@ class Profile extends StatelessWidget {
                     icon: Icon(Icons.notification_important_outlined),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Notifications()));
+                          builder: (context) => NotificationsPage()));
                     },
                     label: Text("Notificações"),
                     style: TextButton.styleFrom(elevation: 0.8),
@@ -113,7 +112,7 @@ class Profile extends StatelessWidget {
                   child: OutlinedButton.icon(
                     onPressed: () {
                       Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Historic()));
+                          MaterialPageRoute(builder: (context) => HistoricPage()));
                     },
                     icon: Text(
                       "Historico de Pedidos",
@@ -159,7 +158,7 @@ class Profile extends StatelessWidget {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () => {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => Feedbacks()))
+                                    builder: (context) => FeedbackPage()))
                               },
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -179,7 +178,7 @@ class Profile extends StatelessWidget {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () => {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => Report()))
+                                    builder: (context) => ReportPage()))
                               },
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -198,8 +197,7 @@ class Profile extends StatelessWidget {
                         text: ' Avalie-nos',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () => {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => Evaluate()))
+                            
                               },
                         style: TextStyle(
                             fontWeight: FontWeight.bold,

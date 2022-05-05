@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Report extends StatelessWidget {
+class ReportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(

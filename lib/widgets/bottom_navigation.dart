@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:ilunch/pages/Cupons.dart';
-import 'package:ilunch/pages/Home.dart';
-import 'package:ilunch/pages/Pesquisa.dart';
-import 'package:ilunch/pages/Profile.dart';
+import 'package:ilunch/pages/cupons_page.dart';
+import 'package:ilunch/pages/search_page.dart';
+import 'package:ilunch/pages/profile_page.dart';
+import 'package:ilunch/pages/home_page.dart';
 
-class Home extends StatefulWidget {
+class BottomNavigation extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _BottomNavigationState createState() => _BottomNavigationState();
 }
 
-class _HomeState extends State<Home> {
+class _BottomNavigationState extends State<BottomNavigation> {
   int _currentIndex = 0;
 
   final screens = [
-    Principal(),
-    Pesquisa(),
-    Cupons(),
-    Profile(),
+    HomePage(),
+    SearchPage(),
+    CuponsPage(),
+    ProfilePage(),
   ];
 
   @override
