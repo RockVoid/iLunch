@@ -99,7 +99,7 @@ class ProfilePage extends StatelessWidget {
                           builder: (context) => NotificationsPage()));
                     },
                     label: Text("Notificações"),
-                    style: TextButton.styleFrom(elevation: 0.8),
+                    style: TextButton.styleFrom(elevation: 0.8, backgroundColor: Colors.white),
                   ),
                 ],
               ),
