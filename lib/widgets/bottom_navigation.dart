@@ -26,7 +26,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         body: screens[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          iconSize: 35,
+          iconSize: 28,
           backgroundColor: Colors.white,
           selectedItemColor: Appthemes.primary,
           currentIndex: _currentIndex,
@@ -40,7 +40,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               label: "Pesquisa",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.airplane_ticket_outlined),
+              icon: Icon(Icons.confirmation_num_sharp),
               label: "Cupons",
             ),
             BottomNavigationBarItem(
