@@ -3,6 +3,7 @@ import 'package:ilunch/pages/cupons_page.dart';
 import 'package:ilunch/pages/search_page.dart';
 import 'package:ilunch/pages/profile_page.dart';
 import 'package:ilunch/pages/home_page.dart';
+import 'package:ilunch/themes/app_themes.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -27,7 +28,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           type: BottomNavigationBarType.fixed,
           iconSize: 35,
           backgroundColor: Colors.white,
-          selectedItemColor: Colors.red,
+          selectedItemColor: Appthemes.primary,
           currentIndex: _currentIndex,
           items: [
             BottomNavigationBarItem(

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ilunch/pages/edit_page.dart';
 import 'package:ilunch/pages/feedback_page.dart';
 import 'package:ilunch/pages/help.dart';
@@ -7,6 +8,7 @@ import 'package:ilunch/pages/historic_page.dart';
 import 'package:ilunch/pages/notifications_page.dart';
 import 'package:ilunch/pages/report_page.dart';
 import 'package:ilunch/pages/saves.dart';
+import 'package:ilunch/themes/app_themes.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -21,8 +23,9 @@ class ProfilePage extends StatelessWidget {
             transform: Matrix4.translationValues(0.0, 0.0, 0.0),
             child: Text(
               "Detalhes Pessoais",
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              style: GoogleFonts.roboto(
+                  textStyle: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
             ),
           ),
           actions: [
@@ -52,29 +55,34 @@ class ProfilePage extends StatelessWidget {
                 ),
                 decoration: new BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: Colors.red, width: 2.0)),
+                    border: Border.all(color: Appthemes.primary, width: 2.0)),
               ),
               SizedBox(
                 height: 20.0,
               ),
               Text(
                 "Guilherme Alencar",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 24),
+                style: GoogleFonts.roboto(
+                    textStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 24)),
               ),
               Text(
                 "guilhermealencar@gmail.com",
-                style: TextStyle(color: Colors.grey.shade800, fontSize: 12),
+                style: GoogleFonts.roboto(
+                    textStyle:
+                        TextStyle(color: Colors.grey.shade800, fontSize: 12)),
               ),
-              Text(
-                "+91 xxxxxxxxxx",
-                style: TextStyle(color: Colors.grey.shade800, fontSize: 12),
-              ),
+              Text("+91 xxxxxxxxxx",
+                  style: GoogleFonts.roboto(
+                      textStyle: TextStyle(
+                          color: Colors.grey.shade800, fontSize: 12))),
               Text(
                 "Rua do Benfica, 777",
-                style: TextStyle(color: Colors.grey.shade800, fontSize: 12),
+                style: GoogleFonts.roboto(
+                    textStyle:
+                        TextStyle(color: Colors.grey.shade800, fontSize: 12)),
               ),
               SizedBox(
                 height: 20,
@@ -84,22 +92,37 @@ class ProfilePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   TextButton.icon(
-                    icon: Icon(Icons.tab),
+                    icon: Icon(
+                      Icons.tab,
+                      color: Colors.grey[800],
+                    ),
                     onPressed: () {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) => Saves()));
                     },
-                    label: Text("Salvos"),
+                    label: Text(
+                      "Salvos",
+                      style: GoogleFonts.roboto(
+                          textStyle: TextStyle(color: Colors.grey[800])),
+                    ),
                     style: TextButton.styleFrom(elevation: 0.8),
                   ),
                   TextButton.icon(
-                    icon: Icon(Icons.notification_important_outlined),
+                    icon: Icon(
+                      Icons.notification_important_outlined,
+                      color: Colors.grey[800],
+                    ),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => NotificationsPage()));
                     },
-                    label: Text("Notificações"),
-                    style: TextButton.styleFrom(elevation: 0.8, backgroundColor: Colors.white),
+                    label: Text(
+                      "Notificações",
+                      style: GoogleFonts.roboto(
+                          textStyle: TextStyle(color: Colors.grey[800])),
+                    ),
+                    style: TextButton.styleFrom(
+                        elevation: 0.8, backgroundColor: Colors.white),
                   ),
                 ],
               ),
@@ -111,14 +134,15 @@ class ProfilePage extends StatelessWidget {
                   width: 300,
                   child: OutlinedButton.icon(
                     onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => HistoricPage()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => HistoricPage()));
                     },
                     icon: Text(
-                      "Historico de Pedidos",
-                      style: TextStyle(
+                      "Histórico de Pedidos",
+                      style: GoogleFonts.roboto(
+                          textStyle: TextStyle(
                         fontSize: 20,
-                      ),
+                      )),
                     ),
                     label: Icon(
                       Icons.arrow_forward_ios_outlined,
@@ -142,7 +166,8 @@ class ProfilePage extends StatelessWidget {
                     icon: Text(
                       "Ajuda",
                       textAlign: TextAlign.left,
-                      style: TextStyle(fontSize: 20),
+                      style: GoogleFonts.roboto(
+                          textStyle: TextStyle(fontSize: 20)),
                     ),
                     style: OutlinedButton.styleFrom(
                         primary: Colors.black, elevation: 1),
@@ -160,10 +185,11 @@ class ProfilePage extends StatelessWidget {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => FeedbackPage()))
                               },
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 16))
+                        style: GoogleFonts.roboto(
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 16)))
                   ],
                 ),
               ),
@@ -180,10 +206,11 @@ class ProfilePage extends StatelessWidget {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => ReportPage()))
                               },
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 16))
+                        style: GoogleFonts.roboto(
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 16)))
                   ],
                 ),
               ),
@@ -195,14 +222,12 @@ class ProfilePage extends StatelessWidget {
                   children: <TextSpan>[
                     TextSpan(
                         text: ' Avalie-nos',
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => {
-                            
-                              },
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 16))
+                        recognizer: TapGestureRecognizer()..onTap = () => {},
+                        style: GoogleFonts.roboto(
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 16)))
                   ],
                 ),
               ),
