@@ -105,7 +105,8 @@ class ProfilePage extends StatelessWidget {
                       style: GoogleFonts.roboto(
                           textStyle: TextStyle(color: Colors.grey[800])),
                     ),
-                    style: TextButton.styleFrom(elevation: 0.8),
+                    style: TextButton.styleFrom(
+                        elevation: 0.8, backgroundColor: Colors.white),
                   ),
                   TextButton.icon(
                     icon: Icon(
@@ -118,7 +119,7 @@ class ProfilePage extends StatelessWidget {
                     },
                     label: Text(
                       "Notificações",
-                      style: GoogleFonts.roboto(
+                      style: GoogleFonts.poppins(
                           textStyle: TextStyle(color: Colors.grey[800])),
                     ),
                     style: TextButton.styleFrom(
@@ -139,7 +140,7 @@ class ProfilePage extends StatelessWidget {
                     },
                     icon: Text(
                       "Histórico de Pedidos",
-                      style: GoogleFonts.roboto(
+                      style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                         fontSize: 20,
                       )),
@@ -149,7 +150,9 @@ class ProfilePage extends StatelessWidget {
                       size: 18,
                     ),
                     style: OutlinedButton.styleFrom(
-                        primary: Colors.black, elevation: 1),
+                        primary: Colors.black,
+                        elevation: 1,
+                        backgroundColor: Colors.white),
                   )),
               SizedBox(
                 height: 30,
@@ -166,11 +169,13 @@ class ProfilePage extends StatelessWidget {
                     icon: Text(
                       "Ajuda",
                       textAlign: TextAlign.left,
-                      style: GoogleFonts.roboto(
+                      style: GoogleFonts.poppins(
                           textStyle: TextStyle(fontSize: 20)),
                     ),
                     style: OutlinedButton.styleFrom(
-                        primary: Colors.black, elevation: 1),
+                        primary: Colors.black,
+                        elevation: 1,
+                        backgroundColor: Colors.white),
                   )),
               SizedBox(
                 height: 40,
@@ -185,7 +190,7 @@ class ProfilePage extends StatelessWidget {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => FeedbackPage()))
                               },
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -206,7 +211,7 @@ class ProfilePage extends StatelessWidget {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => ReportPage()))
                               },
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -223,7 +228,7 @@ class ProfilePage extends StatelessWidget {
                     TextSpan(
                         text: ' Avalie-nos',
                         recognizer: TapGestureRecognizer()..onTap = () => {},
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
