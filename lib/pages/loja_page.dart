@@ -25,7 +25,8 @@ class lojaScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              (Image.asset('assets/images/divinapicanha.png',
+              (Image.asset('assets/images/divinapicanha.jpg',
+
                   height: 200, width: 380, fit: BoxFit.cover)),
               Align(
                 alignment: AlignmentDirectional(0.1, 1),
@@ -61,7 +62,9 @@ class lojaScreen extends StatelessWidget {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: Image.asset(
-                              'assets/images/divinapicanha.png',
+
+                              'assets/images/divinapicanha.jpg',
+
                             ).image,
                           ),
                           shape: BoxShape.circle,
@@ -107,7 +110,9 @@ class lojaScreen extends StatelessWidget {
                     ],
                   )),
 
+
               //scroll dos produtos em ofertas ⬇
+
               Align(
                   alignment: Alignment.topLeft,
                   child: Text(
@@ -168,9 +173,9 @@ class lojaScreen extends StatelessWidget {
                     'Promoções',
                     style: TextStyle(
                         fontWeight: FontWeight.bold, height: -1, fontSize: 30),
-                  )
-                  ),
-                  
+
+                  )),
+
               SizedBox(
                 height: 200,
                 child: ListView.separated(
@@ -187,11 +192,14 @@ class lojaScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                             child: Center(
                                 child: InkWell(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    productScreen()));},
+
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  productScreen()));
+                                    },
+
                                     child: Column(children: [
                                       Image.asset(
                                         'assets/images/pasta.jpg',

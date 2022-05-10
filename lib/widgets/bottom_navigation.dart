@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:ilunch/pages/Cupons.dart';
-import 'package:ilunch/pages/Home.dart';
-import 'package:ilunch/pages/Pesquisa.dart';
-import 'package:ilunch/pages/Profile.dart';
+import 'package:ilunch/pages/cupons_page.dart';
+import 'package:ilunch/pages/search_page.dart';
+import 'package:ilunch/pages/profile_page.dart';
+import 'package:ilunch/pages/home_page.dart';
+import 'package:ilunch/themes/app_themes.dart';
 
-class Home extends StatefulWidget {
+
+class BottomNavigation extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _BottomNavigationState createState() => _BottomNavigationState();
 }
 
-class _HomeState extends State<Home> {
+class _BottomNavigationState extends State<BottomNavigation> {
   int _currentIndex = 0;
 
   final screens = [
-    Principal(),
-    Pesquisa(),
-    Cupons(),
-    Profile(),
+    HomePage(),
+    SearchPage(),
+    CuponsPage(),
+    ProfilePage(),
   ];
 
   @override
@@ -25,9 +27,9 @@ class _HomeState extends State<Home> {
         body: screens[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          iconSize: 35,
+          iconSize: 28,
           backgroundColor: Colors.white,
-          selectedItemColor: Colors.red,
+          selectedItemColor: Appthemes.primary,
           currentIndex: _currentIndex,
           items: [
             BottomNavigationBarItem(
@@ -39,7 +41,7 @@ class _HomeState extends State<Home> {
               label: "Pesquisa",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.airplane_ticket_outlined),
+              icon: Icon(Icons.confirmation_num_sharp),
               label: "Cupons",
             ),
             BottomNavigationBarItem(
