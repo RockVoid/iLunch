@@ -134,7 +134,7 @@ class lojaScreen extends StatelessWidget {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    produto()));
+                                                    productScreen()));
                                       },
                                       child: Center(
                                           child: Column(children: [
@@ -191,7 +191,7 @@ class lojaScreen extends StatelessWidget {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    produto()));},
+                                                    productScreen()));},
                                     child: Column(children: [
                                       Image.asset(
                                         'assets/images/pasta.jpg',
