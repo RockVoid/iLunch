@@ -29,7 +29,7 @@ class EditPage extends StatelessWidget {
                 ),
                 Text(
                   "Conta",
-                  style: GoogleFonts.roboto(
+                  style: GoogleFonts.poppins(
                       textStyle:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                 )
@@ -52,7 +52,7 @@ class EditPage extends StatelessWidget {
                     children: [
                       Text(
                         "Mudar Email",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
@@ -75,7 +75,7 @@ class EditPage extends StatelessWidget {
                     children: [
                       Text(
                         "Alterar Senha",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
@@ -98,7 +98,7 @@ class EditPage extends StatelessWidget {
                     children: [
                       Text(
                         "Alterar Numero de Telefone",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
@@ -121,7 +121,7 @@ class EditPage extends StatelessWidget {
                     children: [
                       Text(
                         "Alterar Localidade",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
@@ -144,7 +144,7 @@ class EditPage extends StatelessWidget {
                     children: [
                       Text(
                         "Sair",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
