@@ -27,27 +27,21 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  auto_size_text: ^3.0.0
+  carousel_slider: ^4.1.1
+  cupertino_icons: ^1.0.4
   flutter:
     sdk: flutter
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.4
-  font_awesome_flutter: ^10.1.0
-  pixel_perfect: ^1.0.8
   flutter_settings_screens: ^0.2.2+1
+  font_awesome_flutter: ^10.1.0
   google_fonts: ^2.3.2
-  carousel_slider: ^4.1.1
-  
-
-  
+  pixel_perfect: ^1.0.8
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.9.1
+  flutter_native_splash: ^1.2.0
   flutter_test:
     sdk: flutter
-  flutter_native_splash: ^1.2.0
-  flutter_launcher_icons: ^0.9.1
 
 flutter_native_splash:
   color: "#EA1D2C"
@@ -55,6 +49,7 @@ flutter_native_splash:
   android: true
   ios: true
 flutter_icons:
+
   image_path: "assets/iLunch.png"
   ios: true
   remove_alpha_ios: true
@@ -70,7 +65,6 @@ flutter_icons:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
 
@@ -79,16 +73,17 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/
-
-  # assets:
+    - assets/images/divinapicanha.jpg
+    - assets/images/pasta.jpg
+    - assets/images/carne.jpg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
-
-
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -98,7 +93,6 @@ flutter:
   #    fonts:
   #      - asset: fonts/Rockwell-Negrito.ttf
   #      - asset: fonts/Rockwell-Regular.ttf
-
   # fonts:
   #   - family: Schyler
   #     fonts:
