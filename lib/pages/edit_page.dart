@@ -1,7 +1,24 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ilunch/services/auth_methods.dart';
+import 'package:ilunch/widgets/show_snack_bar.dart';
+import 'package:ilunch/pages/auth_page.dart';
 
-class EditPage extends StatelessWidget {
+class EditPage extends StatefulWidget {
+  @override
+  State<EditPage> createState() => _EditPageState();
+}
+
+class _EditPageState extends State<EditPage> {
+  void signOut() async {
+    await AuthMethods().signOut();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => AuthPage(),
+      ),
+    );
+    ShowSnackBar('Usuário desconectado', context);
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -22,7 +39,7 @@ class EditPage extends StatelessWidget {
               children: [
                 Icon(
                   Icons.person,
-                  color: Colors.red[200],
+                  color: Colors.red[500],
                 ),
                 SizedBox(
                   width: 10,
@@ -129,7 +146,7 @@ class EditPage extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: signOut,
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
