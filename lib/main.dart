@@ -1,23 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ilunch/pages/authenticator.dart';
+import 'ilunch.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const iLunch());
-}
-
-class iLunch extends StatefulWidget {
-  const iLunch({Key? key}) : super(key: key);
-
-  @override
-  State<iLunch> createState() => _iLunchState();
-}
-
-class _iLunchState extends State<iLunch> {
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Authenticator(),
-    );
-  }
 }

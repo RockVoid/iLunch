@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class EditPage extends StatelessWidget {
   @override
@@ -29,9 +29,7 @@ class EditPage extends StatelessWidget {
                 ),
                 Text(
                   "Conta",
-                  style: GoogleFonts.poppins(
-                      textStyle:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 )
               ],
             ),
@@ -52,11 +50,10 @@ class EditPage extends StatelessWidget {
                     children: [
                       Text(
                         "Mudar Email",
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey[600])),
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey[600]),
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
@@ -75,11 +72,10 @@ class EditPage extends StatelessWidget {
                     children: [
                       Text(
                         "Alterar Senha",
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey[600])),
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey[600]),
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
@@ -98,11 +94,10 @@ class EditPage extends StatelessWidget {
                     children: [
                       Text(
                         "Alterar Numero de Telefone",
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey[600])),
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey[600]),
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
@@ -121,11 +116,10 @@ class EditPage extends StatelessWidget {
                     children: [
                       Text(
                         "Alterar Localidade",
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey[600])),
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey[600]),
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
@@ -144,11 +138,10 @@ class EditPage extends StatelessWidget {
                     children: [
                       Text(
                         "Sair",
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey[600])),
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey[600]),
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
