@@ -39,6 +39,10 @@ dependencies:
   flutter_settings_screens: ^0.2.2+1
   google_fonts: ^2.3.2
   carousel_slider: ^4.1.1
+  firebase_core: ^1.16.0
+  firebase_auth: ^3.3.17
+  cloud_firestore: ^3.1.14
+  firebase_storage: ^10.2.15
   
 
   
