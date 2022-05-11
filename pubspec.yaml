@@ -50,8 +50,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_native_splash: ^1.2.0
-  flutter_launcher_icons: ^0.9.1
+  flutter_native_splash: ^2.1.6
+  flutter_launcher_icons: ^0.9.2
 
 flutter_native_splash:
   color: "#EA1D2C"
