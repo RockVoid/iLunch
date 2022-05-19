@@ -1,233 +1,733 @@
 import 'package:flutter/material.dart';
-
 import 'product_page.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class CardItem {
-  final String product;
-  final String title;
-  final String preco;
+class Loja extends StatefulWidget {
+   Loja({Key? key}) : super(key: key);
+  
 
-  const CardItem({
-    required this.product,
-    required this.title,
-    required this.preco,
-  });
+  @override
+  _LojaState createState() => _LojaState();
 }
 
-class lojaScreen extends StatelessWidget {
+class _LojaState extends State<Loja> {
+  late double ratingBarValue;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    
+      backgroundColor: Colors.white,
       body: Container(
-        alignment: Alignment.topRight,
-        child: SingleChildScrollView(
+        
+
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+         
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              (Image.asset('assets/images/divinapicanha.jpg',
-
-                  height: 200, width: 380, fit: BoxFit.cover)),
-              Align(
-                alignment: AlignmentDirectional(0.1, 1),
-                child: Row(children: [
-                  Column(
-                      mainAxisSize: MainAxisSize.max,
+              Image.network(
+                'https://static-images.ifood.com.br/image/upload/t_high/logosgde/67b715be-fd94-4d46-9285-78f643700591/202004281811_QSGV_.jpeg',
+                width: double.infinity,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+              
+              Padding(
+                 padding: const EdgeInsets.symmetric(vertical: 22, horizontal: 22),
+                child: Row(
+             
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                    
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Align(
-                            alignment: AlignmentDirectional(2, 0),
-                            child: Text(
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
                               'Divina Picanha',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  height: 2,
-                                  fontSize: 24),
-                            )),
-                        Text('categoria - distância',
-                            style: TextStyle(
+                              style: GoogleFonts.poppins(
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold,
-                                height: 1,
-                                fontSize: 18,
-                                color: Colors.black.withOpacity(0.6))),
-                      ]),
-                  Expanded(
-                    child: Align(
-                      alignment: AlignmentDirectional(0.85, 0.05),
-                      child: Container(
-                        width: 50,
-                        height: 65,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFEEEEEE),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: Image.asset(
-
-                              'assets/images/divinapicanha.jpg',
-
-                            ).image,
+                              ),
+                            ),
+                            Icon(
+                              Icons.stars_rounded,
+                              color: Color(0xFFFF0000),
+                              size: 24,
+                            ),
+                          ],
+                        ),
+                        Text(
+                          'Categoria - Distância',
+                          style: GoogleFonts.poppins(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600,
                           ),
-                          shape: BoxShape.circle,
+                        ),
+                        Container(
+                          height: 28,
+                          decoration: BoxDecoration(),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            RatingBar.builder(
+                              onRatingUpdate: (newValue) =>
+                                  setState(() => ratingBarValue = newValue),
+                              itemBuilder: (context, index) => Icon(
+                                Icons.star_rounded,
+                                color: Color(0xFFF9B405),
+                              ),
+                              direction: Axis.horizontal,
+                              initialRating: ratingBarValue = 4,
+                              unratedColor: Color(0xFF9E9E9E),
+                              itemCount: 5,
+                              itemSize: 20,
+                              glowColor: Color(0xFFF9B405),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    //coluna do imagem circular da loja e o número de avaliações
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: 60,
+                          height: 60,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.network(
+                            'https://static-images.ifood.com.br/image/upload/t_high/logosgde/67b715be-fd94-4d46-9285-78f643700591/202004281811_QSGV_.jpeg',
+                          ),
+                        ),
+                        Container(
+                          height: 20,
+                          decoration: BoxDecoration(),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              '10',
+                              style: GoogleFonts.poppins(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              ' avaliações',
+                              textAlign: TextAlign.end,
+                              style: GoogleFonts.poppins(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 22),
+                child: Text(
+                  'Ofertas',
+                  style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(22, 4, 22, 4),
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                 
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      Container(
+                        width: 140,
+                         height: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 3,
+                              color: Color(0x411D2429),
+                              offset: Offset(0, 1),
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => productScreen(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                  
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                 
+                                    topLeft: Radius.circular(18),
+                                    topRight: Radius.circular(18),
+                                  ),
+                                  child: Image.network(
+                                    'https://static-images.ifood.com.br/image/upload/t_medium/pratos/67b715be-fd94-4d46-9285-78f643700591/202003251115_ygzT_.jpeg',
+                                    width: 140,
+                                    height: 60,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(6, 2, 6, 0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'CAMARÃO ESPECIAL DON TALLENTO',
+                                      style: GoogleFonts.poppins(
+                                     fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Envolvido com arroz cremoso ao molho branco e gra...',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Text(
+                                      'R\$ 120,90',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                ]),
-              ),
-              Align(
-                  alignment: AlignmentDirectional(-1, -1),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    //icones de avaliação
-                    children: const <Widget>[
-                      Icon(
-                        Icons.star_rate,
-                        color: Color.fromARGB(255, 251, 255, 0),
-                        size: 18.0,
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(6, 0, 0, 0),
+                        child: Container(
+                          width: 140,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 3,
+                                color: Color(0x411D2429),
+                                offset: Offset(0, 1),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(0),
+                                    bottomRight: Radius.circular(0),
+                                    topLeft: Radius.circular(18),
+                                    topRight: Radius.circular(18),
+                                  ),
+                                  child: Image.network(
+                                    'https://static-images.ifood.com.br/image/upload/t_medium/pratos/67b715be-fd94-4d46-9285-78f643700591/202003251115_80Cs_.jpeg',
+                                    width: 140,
+                                    height: 60,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(6, 2, 6, 0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'FILE DE PEIXE GRELHADO',
+                                      style: GoogleFonts.poppins(
+                                     fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Acompanha arroz branco e legumes cozidos',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Text(
+                                      'R\$ 120,90',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                      Icon(
-                        Icons.star_rate,
-                        color: Color.fromARGB(255, 255, 251, 0),
-                        size: 18.0,
-                      ),
-                      Icon(
-                        Icons.star_rate,
-                        color: Color.fromARGB(255, 255, 251, 0),
-                        size: 18.0,
-                      ),
-                      Icon(
-                        Icons.star_rate,
-                        color: Color.fromARGB(255, 255, 251, 0),
-                        size: 18.0,
-                      ),
-                      Icon(
-                        Icons.star_rate,
-                        color: Color.fromARGB(255, 255, 251, 0),
-                        size: 18.0,
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(6, 0, 0, 0),
+                        child: Container(
+                          width: 140,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 3,
+                                color: Color(0x411D2429),
+                                offset: Offset(0, 1),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(0),
+                                    bottomRight: Radius.circular(0),
+                                    topLeft: Radius.circular(18),
+                                    topRight: Radius.circular(18),
+                                  ),
+                                  child: Image.network(
+                                    'https://static-images.ifood.com.br/image/upload/t_medium/pratos/67b715be-fd94-4d46-9285-78f643700591/202202021542_8PAI_i.jpg',
+                                    width: 140,
+                                    height: 60,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(6, 2, 6, 0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'FILE TRINCHADO COM FRITAS',
+                                      style: GoogleFonts.poppins(
+                                     fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      '300g de file mignon, molho madeira, champig...',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Text(
+                                      'R\$ 99,90',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),                      ),
                       ),
                     ],
-                  )),
-
-
-              //scroll dos produtos em ofertas ⬇
-
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'Ofertas',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, height: 3, fontSize: 30),
-                  )),
-              SizedBox(
-                  height: 200,
-                  child: ListView.separated(
-                      itemCount: 6,
-                      scrollDirection: Axis.horizontal,
-                      separatorBuilder: (context, _) => SizedBox(width: 8),
-                      itemBuilder: (context, index) => Container(
-                            height: 40,
-                            width: 100,
-                            padding: EdgeInsets.all(2),
-                            child: AspectRatio(
-                              aspectRatio: 3 / 2,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: InkWell(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    productScreen()));
-                                      },
-                                      child: Center(
-                                          child: Column(children: [
-                                        Image.asset(
-                                          'assets/images/carne.jpg',
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          'Descrição Produto',
-                                          style: TextStyle(
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Align(
-                                            alignment: Alignment.topLeft,
-                                            child: Text(
-                                              'Preço',
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.bold),
-                                            ))
-                                      ])))),
-                            ),
-                          ))),
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    //Scroll das promoções ⬇
-                    'Promoções',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, height: -1, fontSize: 30),
-
-                  )),
-
-              SizedBox(
-                height: 200,
-                child: ListView.separated(
-                    itemCount: 4,
-                    scrollDirection: Axis.horizontal,
-                    separatorBuilder: (context, _) => SizedBox(width: 12),
-                    itemBuilder: (context, index) => Container(
-                        height: 40,
-                        width: 100,
-                        padding: EdgeInsets.all(3),
-                        child: AspectRatio(
-                          aspectRatio: 4 / 3,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Center(
-                                child: InkWell(
-
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  productScreen()));
-                                    },
-
-                                    child: Column(children: [
-                                      Image.asset(
-                                        'assets/images/pasta.jpg',
-                                      ),
-                                      const SizedBox(
-                                        height: 0,
-                                      ),
-                                      Text(
-                                        'Descrição Produto',
-                                        style: TextStyle(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Align(
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                            'Preço',
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold),
-                                          ))
-                                    ]))),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 22),
+                child: Text(
+                  'Produtos',
+                  style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                   padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 6),
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    primary: false,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 3,
+                                color: Color(0x411D2429),
+                                offset: Offset(0, 1),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(16),
                           ),
-                        ))),
-              )
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 1, 1, 1),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.network(
+                                      'https://static-images.ifood.com.br/image/upload/t_medium/pratos/67b715be-fd94-4d46-9285-78f643700591/202201231727_46D2_i.jpg',
+                                      width: 70,
+                                      height: 100,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8, 8, 4, 0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'KIT IRRESISTÍVEL',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0,1,8,0),
+                                            child: AutoSizeText(
+                                              '500 g picanha importada, 500 g maminha, 1,100 kg de baião tradicio...',
+                                              textAlign: TextAlign.start,
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 4, 0, 0),
+                                      child: Icon(
+                                        Icons.chevron_right_rounded,
+                                        color: Color(0xFF57636C),
+                                        size: 24,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 4, 8),
+                                      child: Text(
+                                        'R\$ 215,90',
+                                        textAlign: TextAlign.end,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 3,
+                                color: Color(0x411D2429),
+                                offset: Offset(0, 1),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 1, 1, 1),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.network(
+                                      'https://static-images.ifood.com.br/image/upload/t_medium/pratos/67b715be-fd94-4d46-9285-78f643700591/202203281145_QMA2_i.jpg',
+                                      width: 70,
+                                      height: 100,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8, 8, 4, 0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'PICANHA AO ALHO E ÓLEO',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0,1,8,0),
+                                            child: AutoSizeText(
+                                              '400g de picanha importada em quatro fatias, grelha...',
+                                              textAlign: TextAlign.start,
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 4, 0, 0),
+                                      child: Icon(
+                                        Icons.chevron_right_rounded,
+                                        color: Color(0xFF57636C),
+                                        size: 24,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 4, 8),
+                                      child: Text(
+                                        'R\$ 149,90',
+                                        textAlign: TextAlign.end,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 6),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 3,
+                                color: Color(0x411D2429),
+                                offset: Offset(0, 1),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 1, 1, 1),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.network(
+                                      'https://static-images.ifood.com.br/image/upload/t_medium/pratos/67b715be-fd94-4d46-9285-78f643700591/202201251731_17UO_i.jpg',
+                                      width: 70,
+                                      height: 100,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8, 8, 4, 0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'PICANHA SUÍNA À MODA CHEF',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0,1,8,0),
+                                            child: AutoSizeText(
+                                              '400g de picanha suína grelhada, acompanhando...',
+                                              textAlign: TextAlign.start,
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 4, 0, 0),
+                                      child: Icon(
+                                        Icons.chevron_right_rounded,
+                                        color: Color(0xFF57636C),
+                                        size: 24,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 4, 8),
+                                      child: Text(
+                                        'R\$ 102,90',
+                                        textAlign: TextAlign.end,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
-        ),
       ),
     );
   }
