@@ -13,11 +13,13 @@ class AuthMethods {
   }) async {
     String res = 'Ocorreu algum erro';
     try {
-      if (email.isNotEmpty && password.isNotEmpty && password.isNotEmpty &&
+      if (email.isNotEmpty ||
+          password.isNotEmpty ||
+          password.isNotEmpty ||
           username.isNotEmpty) {
         if (password == passwordConfirm) {
           UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(
+              await _auth.createUserWithEmailAndPassword(
             email: email,
             password: password,
           );
@@ -29,12 +31,13 @@ class AuthMethods {
             "uid": userCredential.user!.uid,
             'salesman': false,
           });
+          return res = 'success';
         } else {
           return res = 'error-P';
         }
-        return res = 'success';
       } else {
-        return res = 'error-E';
+        res = 'error-E';
+        return res;
       }
     } catch (e) {
       res = e.toString();

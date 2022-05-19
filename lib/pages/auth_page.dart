@@ -56,15 +56,12 @@ class _AuthPageState extends State<AuthPage>
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(40, 20, 40, 5),
-        child: TabBarView(
-          controller: _tabController,
-          children: <Widget>[
-            LoginWidgtet(),
-            SignUpWidget(),
-          ],
-        ),
+      body: TabBarView(
+        controller: _tabController,
+        children: <Widget>[
+          LoginWidgtet(),
+          SignUpWidget(),
+        ],
       ),
     );
   }

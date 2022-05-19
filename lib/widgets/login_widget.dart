@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:ilunch/themes/app_themes.dart';
+import 'package:ilunch/widgets/elevated_button_widget.dart';
 import 'package:ilunch/widgets/show_snack_bar.dart';
+import 'package:ilunch/widgets/text_field_input.dart';
 import '../services/auth_methods.dart';
 import 'bottom_navigation.dart';
 
@@ -24,7 +28,7 @@ class _LoginWidgtetState extends State<LoginWidgtet> {
     _passwordController.dispose();
   }
 
-  String? TextErrorEmpty(String? Text) {
+  String? TextError(String? Text) {
     String? TextError;
     if (Text == 'error-E') {
       TextError = "Preencha todos os campos";
@@ -72,133 +76,127 @@ class _LoginWidgtetState extends State<LoginWidgtet> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          TextFormField(
-            controller: _emailController,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: const Color(0xffffffff),
-              labelText: "Login",
-              hintText: "E-mail ou Número de Celular",
-              errorText: TextErrorEmpty(_errorText),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(color: Color(0xff222222)),
-              ),
-            ),
+          TextFieldInput(
+            textEditingController: _emailController,
+            hintText: 'Email',
+            errorText: TextError(_errorText),
+            textInputType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 15),
-          TextFormField(
-            controller: _passwordController,
-            obscureText: true,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: const Color(0xffffffff),
-              labelText: "Senha",
-              errorText: TextErrorEmpty(_errorText),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(color: Color(0xff222222)),
-              ),
-            ),
+          TextFieldInput(
+            textEditingController: _passwordController,
+            hintText: 'Senha',
+            errorText: TextError(_errorText),
+            textInputType: TextInputType.visiblePassword,
+            isPass: true,
           ),
           TextButton(
             onPressed: () {},
-            child: const Text(
+            child: Text(
               "Esqueceu a senha?",
-              style: TextStyle(color: Color(0xffea1d2c)),
-            ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: loginUser,
-                  child: _isLoading
-                      ? Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                          ),
-                        )
-                      : Text(
-                          "Login",
-                          style: TextStyle(
-                            fontSize: 17,
-                            color: Color(0xfff6f6f6),
-                          ),
-                        ),
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color(0xffea1d2c),
-                    fixedSize: const Size(3000, 55),
-                  ),
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.normal,
+                  color: Appthemes.primary,
                 ),
               ),
-            ],
+            ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
+          ElevatedButtonWidget(
+            onPressed: loginUser,
+            child: _isLoading
+                ? Center(
+                    child: CircularProgressIndicator(
+                      color: Appthemes.background,
+                    ),
+                  )
+                : Text(
+                    "Cadastro",
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                        color: Appthemes.background,
+                      ),
+                    ),
+                  ),
+          ),
+           Padding(
+            padding: EdgeInsets.symmetric(vertical: 15),
             child: Text(
               "ou",
-              style: TextStyle(
-                fontSize: 22,
-                color: Colors.black,
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black,
+                ),
               ),
             ),
           ),
-          ElevatedButton(
+          ElevatedButtonWidget(
             onPressed: () {},
-            child: Row(
-              children: const [
-                Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: FaIcon(
+            color: Appthemes.blueColor,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                children: [
+                  FaIcon(
                     FontAwesomeIcons.facebook,
                     size: 30,
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: Text(
-                    "Login com o Facebook",
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Color(0xfff6f6f6),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Login com o Facebook",
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.normal,
+                              color: Appthemes.background,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              ],
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: const Color(0xff4062bb),
-              fixedSize: const Size(3000, 55),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 20),
-          ElevatedButton(
+          ElevatedButtonWidget(
             onPressed: () {},
-            child: Row(
-              children: const [
-                Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: FaIcon(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                children: [
+                  FaIcon(
                     FontAwesomeIcons.google,
                     size: 30,
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 26.5),
-                  child: Text(
-                    "Login com o Google",
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Color(0xfff6f6f6),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Login com o Google",
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.normal,
+                              color: Appthemes.background,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              ],
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: const Color(0xffea1d2c),
-              fixedSize: const Size(3000, 55),
+                ],
+              ),
             ),
           ),
         ],

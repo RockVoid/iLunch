@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:ilunch/themes/app_themes.dart';
+import 'package:ilunch/widgets/elevated_button_widget.dart';
 import 'package:ilunch/widgets/show_snack_bar.dart';
+import 'package:ilunch/widgets/text_field_input.dart';
 
 import '../services/auth_methods.dart';
 import 'bottom_navigation.dart';
@@ -33,7 +37,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   String? TextErrorEmpty(String? Text) {
     String? TextError;
     if (Text == 'error-E') {
-      TextError = "Preencha todos os campos";
+      setState(() {
+        TextError = "Preencha todos os campos";
+      });
     } else {
       TextError = null;
     }
@@ -65,7 +71,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     setState(() {
       _isLoading = false;
     });
-    if (res != 'success') {
+    if (res == 'success') {
       _emailController.text = '';
       _usernameController.text = '';
       _passwordController.text = '';
@@ -80,7 +86,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         ),
       );
     } else {
-      _errorText = res;
+      setState(() {
+        _errorText = res;
+      });
     }
   }
 
@@ -89,95 +97,95 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  "Cadastro",
-                  style: TextStyle(
-                    color: Color(0xffea1d2c),
+          Padding(
+            padding: const EdgeInsets.only(left: 40, right: 40, top: 40),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Text(
+                    "Cadastro",
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.w500,
+                        color: const Color(0xffea1d2c),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: FaIcon(FontAwesomeIcons.facebook),
-              ),
-              Divider(),
-              IconButton(
-                onPressed: () {},
-                icon: FaIcon(FontAwesomeIcons.google),
-              ),
-            ],
-          ),
-          Divider(),
-          Divider(),
-          TextFormField(
-            controller: _usernameController,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: const Color(0xffffffff),
-              labelText: "Nome Completo",
-              errorText: TextErrorEmpty(_errorText),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(color: Color(0x00000000)),
-              ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: FaIcon(
+                    FontAwesomeIcons.facebook,
+                    color: Colors.black,
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    primary: Colors.white,
+                    elevation: 4,
+                    padding: EdgeInsets.zero,
+                    minimumSize: Size(50, 50),
+                  ),
+                ),
+                SizedBox(
+                  width: 12,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: FaIcon(
+                    FontAwesomeIcons.google,
+                    color: Colors.black,
+                    size: 20,
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    primary: Colors.white,
+                    elevation: 4,
+                    padding: EdgeInsets.zero,
+                    minimumSize: Size(50, 50),
+                  ),
+                ),
+              ],
             ),
           ),
-          Divider(),
-          TextFormField(
-            controller: _emailController,
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: const Color(0xffffffff),
-              labelText: "E-mail",
-              hintText: "exemplo@gmai.com",
-              errorText: TextErrorEmpty(_errorText),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(color: Color(0x000000000)),
-              ),
-            ),
+          SizedBox(height: 20),
+          TextFieldInput(
+            textEditingController: _usernameController,
+            hintText: 'Nome Completo',
+            textInputType: TextInputType.emailAddress,
+            errorText: TextErrorEmpty(_errorText),
           ),
-          Divider(),
-          TextFormField(
-            controller: _passwordController,
-            obscureText: true,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: const Color(0xffffffff),
-              labelText: "Senha",
-              hintText: "Pelo menos 8 caracteres!",
-              errorText: TextErrorPassword(_errorText),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(color: Color(0x000000000)),
-              ),
-            ),
+          SizedBox(height: 10),
+          TextFieldInput(
+            textEditingController: _emailController,
+            hintText: 'E-mail',
+            textInputType: TextInputType.emailAddress,
+            errorText: TextErrorEmpty(_errorText),
           ),
-          Divider(),
-          TextFormField(
-            controller: _passwordConfirmController,
-            obscureText: true,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: const Color(0xffffffff),
-              labelText: "Confirmar senha",
-              hintText: "Redigite a senha!",
-              errorText: TextErrorPassword(_errorText),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(color: Color(0x000000000)),
-              ),
-            ),
+          SizedBox(height: 10),
+          TextFieldInput(
+            textEditingController: _passwordController,
+            hintText: 'Senha',
+            textInputType: TextInputType.visiblePassword,
+            errorText: TextErrorPassword(_errorText),
+            isPass: true,
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: const Color(0xffea1d2c),
-              fixedSize: const Size(3000, 55),
-            ),
+          SizedBox(height: 10),
+          TextFieldInput(
+            textEditingController: _passwordConfirmController,
+            hintText: 'Confirmar senha',
+            textInputType: TextInputType.visiblePassword,
+            errorText: TextErrorPassword(_errorText),
+            isPass: true,
+          ),
+          SizedBox(height: 35),
+          ElevatedButtonWidget(
+            bottom: 35,
             onPressed: signUpUser,
             child: _isLoading
                 ? Center(
@@ -186,9 +194,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     ),
                   )
                 : Text(
-                    "Cadastrar",
-                    style: TextStyle(
-                      color: Color(0xfff6f6f6),
+                    "Cadastro",
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                        color: Appthemes.background,
+                      ),
                     ),
                   ),
           ),
