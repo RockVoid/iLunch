@@ -1,5 +1,3 @@
-
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -42,23 +40,23 @@ class _productScreenState extends State<productScreen> {
       key: scaffoldKey,
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: [
-              Align(
-                alignment: AlignmentDirectional(0, 0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Image.asset(
-                      'assets/images/carne.jpg',
-                      width: double.infinity,
-                      height: 150,
-                      fit: BoxFit.cover,
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
+        child: Stack(
+          children: [
+            Align(
+              alignment: AlignmentDirectional(0, 0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Image.network(
+                    'https://static-images.ifood.com.br/image/upload/t_medium/pratos/67b715be-fd94-4d46-9285-78f643700591/202003251115_ygzT_.jpeg',
+                    width: double.infinity,
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 22),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -72,19 +70,24 @@ class _productScreenState extends State<productScreen> {
                               Align(
                                 alignment: AlignmentDirectional(-0.9, -0.56),
                                 child: Text(
-                                  'Carne na brasa',
+                                  'CAMARÃO ESPECIAL DON TALLENTO',
                                   style: GoogleFonts.poppins(
-                                    fontSize: 24,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
                               Align(
                                 alignment: AlignmentDirectional(-0.9, -0.49),
-                                child: Text(
-                                  'Serve até 2 pessoas',
-                                  textAlign: TextAlign.start,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 4),
+                                  child: Text(
+                                    'Serve até 2 pessoas',
+                                    textAlign: TextAlign.start,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -94,20 +97,23 @@ class _productScreenState extends State<productScreen> {
                                 decoration: BoxDecoration(
                                   color: Color(0x00EEEEEE),
                                 ),
-                                child: Align(
-                                  alignment: AlignmentDirectional(0, -0.34),
-                                  child: AutoSizeText(
-                                      '\n400g de picanha importada em quatro fatias, queijo mussarela, regada ao molho roqueford, acompanha batatas noissetes e arroz com brócolis.\n\n',
-                                      textAlign: TextAlign.start,
-                                      style: GoogleFonts.poppins()),
-                                ),
+                                child: Text(
+                                    '\nEnvolvido com arroz cremoso ao molho branco e gratinado com queijo mussarela.\n\n',
+                                    textAlign: TextAlign.start,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                    )),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    'R\$ 19,99',
-                                    style: GoogleFonts.poppins(),
+                                    'R\$ 120,90',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -116,10 +122,13 @@ class _productScreenState extends State<productScreen> {
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Align(
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(6, 0, 20, 0),
+              child: Align(
                 alignment: AlignmentDirectional(0, 0.9),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -152,7 +161,7 @@ class _productScreenState extends State<productScreen> {
                       ),
                     ),
                     Text(
-                      'R\$ 19,99',
+                      'R\$ 120,90',
                       style: GoogleFonts.poppins(
                         fontSize: 18,
                       ),
@@ -165,16 +174,19 @@ class _productScreenState extends State<productScreen> {
                           Positioned.fill(
                             child: Container(color: const Color(0xFFFF0000)),
                           ),
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              padding: const EdgeInsets.all(16.0),
-                              primary: Colors.white,
-                              textStyle: GoogleFonts.poppins(
-                                fontSize: 15,
+                          Padding(
+                            padding: const EdgeInsets.only(right: 4),
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                padding: const EdgeInsets.all(16.0),
+                                primary: Colors.white,
+                                textStyle: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                ),
                               ),
+                              onPressed: () {},
+                              child: const Text('Adicionar'),
                             ),
-                            onPressed: () {},
-                            child: const Text('Adicionar'),
                           ),
                         ],
                       ),
@@ -182,99 +194,99 @@ class _productScreenState extends State<productScreen> {
                   ],
                 ),
               ),
-              Align(
-                alignment: AlignmentDirectional(-0.94, -0.98),
-                child: InkWell(
-                  onTap: () async {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    width: 35,
-                    height: 35,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFF0000),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.black,
-                      size: 36,
-                    ),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.07, 0.47),
+            ),
+            Align(
+              alignment: AlignmentDirectional(-0.94, -0.98),
+              child: InkWell(
+                onTap: () async {
+                  Navigator.pop(context);
+                },
                 child: Container(
-                  width: 345,
-                  height: 100,
+                  width: 35,
+                  height: 35,
                   decoration: BoxDecoration(
-                    color: Color(0x00EEEEEE),
-                    border: Border.all(
-                      color: Color(0xFF7C7C7C),
-                    ),
+                    color: Color(0xFFFF0000),
+                    shape: BoxShape.circle,
                   ),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional(0, -0.75),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.food_bank_outlined,
-                              color: Colors.black,
-                              size: 24,
-                            ),
-                            Text(
-                              'Divina Picanha   ',
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Icon(
-                              Icons.check_circle_sharp,
-                              color: Color(0xFFFF0000),
-                              size: 16.5,
-                            ),
-                            Text(
-                              '                                               4,5',
-                              style: GoogleFonts.poppins(
-                                fontSize: 13,
-                              ),
-                            ),
-                            Icon(
-                              Icons.star_rate,
-                              color: Color(0xFFF9B405),
-                              size: 19,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(0, 1.03),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              '  Escadaria Bloco Central - Terreo - IFCE',
-                              style: GoogleFonts.poppins(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  child: Icon(
+                    Icons.keyboard_arrow_down,
+                    color: Colors.black,
+                    size: 36,
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+            Align(
+              alignment: AlignmentDirectional(0.07, 0.47),
+              child: Container(
+                width: 345,
+                height: 100,
+                decoration: BoxDecoration(
+                  color: Color(0x00EEEEEE),
+                  border: Border.all(
+                    color: Color(0xFF7C7C7C),
+                  ),
+                ),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(0, -0.75),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.food_bank_outlined,
+                            color: Colors.black,
+                            size: 24,
+                          ),
+                          Text(
+                            'Divina Picanha   ',
+                            textAlign: TextAlign.start,
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Icon(
+                            Icons.check_circle_sharp,
+                            color: Color(0xFFFF0000),
+                            size: 16.5,
+                          ),
+                          Text(
+                            '                                               4,5',
+                            style: GoogleFonts.poppins(
+                              fontSize: 13,
+                            ),
+                          ),
+                          Icon(
+                            Icons.star_rate,
+                            color: Color(0xFFF9B405),
+                            size: 19,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0, 1.03),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            '  Escadaria Bloco Central - Terreo - IFCE',
+                            style: GoogleFonts.poppins(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
