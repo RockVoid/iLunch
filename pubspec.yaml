@@ -27,6 +27,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter:
+    sdk: flutter
+
   auto_size_text: ^3.0.0
   carousel_slider: ^4.1.1
   cloud_firestore: ^3.1.14
@@ -34,8 +37,6 @@ dependencies:
   firebase_auth: ^3.3.17
   firebase_core: ^1.16.0
   firebase_storage: ^10.2.15
-  flutter:
-    sdk: flutter
   flutter_rating_bar: ^4.0.1
   flutter_settings_screens: ^0.2.2+1
   font_awesome_flutter: ^10.1.0
@@ -43,11 +44,8 @@ dependencies:
   pixel_perfect: ^1.0.8
 
 dev_dependencies:
-  flutter_launcher_icons: ^0.9.1
-  flutter_native_splash: ^1.2.0
   flutter_test:
     sdk: flutter
-
 
   flutter_native_splash: ^2.1.6
   flutter_launcher_icons: ^0.9.2
