@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ilunch/main.dart';
-import 'package:ilunch/pages/auth_page.dart';
+import 'package:ilunch/pages/gerais/auth_page.dart';
 import 'package:ilunch/widgets/bottom_navigation.dart';
 
 class iLunch extends StatefulWidget {

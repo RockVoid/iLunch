@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ilunch/services/auth_methods.dart';
 import 'package:ilunch/widgets/show_snack_bar.dart';
-import 'package:ilunch/pages/auth_page.dart';
+import 'package:ilunch/pages/gerais/auth_page.dart';
 
 class EditPage extends StatefulWidget {
   @override

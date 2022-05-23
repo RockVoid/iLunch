@@ -1,14 +1,12 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ilunch/pages/auth_page.dart';
-import 'package:ilunch/pages/edit_page.dart';
-import 'package:ilunch/pages/feedback_page.dart';
-import 'package:ilunch/pages/help.dart';
-import 'package:ilunch/pages/historic_page.dart';
-import 'package:ilunch/pages/notifications_page.dart';
-import 'package:ilunch/pages/report_page.dart';
-import 'package:ilunch/pages/saves.dart';
+import 'package:ilunch/pages/gerais/auth_page.dart';
+import 'package:ilunch/pages/gerais/edit_page.dart';
+import 'package:ilunch/pages/gerais/feedback_page.dart';
+import 'package:ilunch/pages/gerais/help.dart';
+import 'package:ilunch/pages/gerais/historic_page.dart';
+import 'package:ilunch/pages/gerais/notifications_page.dart';
+import 'package:ilunch/pages/gerais/saves.dart';
 import 'package:ilunch/services/auth_methods.dart';
 import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/show_snack_bar.dart';
@@ -234,78 +232,66 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(
                 height: 40,
               ),
-              RichText(
-                textAlign: TextAlign.start,
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: 'Enviar um Feedback',
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => FeedbackPage()))
-                              },
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                                fontSize: 16)))
-                  ],
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => FeedbackPage()));
+                },
+                child: Text(
+                  'Enviar um Feedback',
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                        fontSize: 16),
+                  ),
                 ),
               ),
               SizedBox(
                 height: 17,
               ),
-              RichText(
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: 'Reportar Algo',
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => ReportPage()))
-                              },
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                                fontSize: 16)))
-                  ],
+              InkWell(
+                onTap: () {},
+                child: Text(
+                  'Tornar-se Parceiro',
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                        fontSize: 16),
+                  ),
                 ),
               ),
               SizedBox(
                 height: 17,
               ),
-              RichText(
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: 'Avalie-nos',
-                        recognizer: TapGestureRecognizer()..onTap = () => {},
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                                fontSize: 16)))
-                  ],
+              InkWell(
+                onTap: () {},
+                child: Text(
+                  'Avalie-nos',
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                        fontSize: 16),
+                  ),
                 ),
               ),
               SizedBox(
-                height: 16,
+                height: 17,
               ),
-              RichText(
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: 'Sair',
-                        recognizer: TapGestureRecognizer()..onTap = signOut,
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: Appthemes.primary,
-                                fontSize: 16)))
-                  ],
+              InkWell(
+                onTap: () {
+                  signOut();
+                },
+                child: Text(
+                  'Sair',
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Appthemes.primary,
+                        fontSize: 16),
+                  ),
                 ),
               ),
             ]),

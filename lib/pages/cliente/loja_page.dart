@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'product_page.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ilunch/pages/cliente/product_page.dart';
 
 class Loja extends StatefulWidget {
    Loja({Key? key}) : super(key: key);

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ilunch/model/vendedor_model.dart';
-import 'package:ilunch/pages/home_page.dart';
-import 'package:ilunch/pages/loja_page.dart';
+import 'package:ilunch/pages/cliente/loja_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
 
 class HomeItemVendedor extends StatelessWidget {
@@ -22,7 +21,6 @@ class HomeItemVendedor extends StatelessWidget {
               if (vendedor.name == 'Divina Picanha') {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => Loja()));
-                print('foi');
               }
             },
             child: Row(

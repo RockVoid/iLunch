@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ilunch/pages/profile_page.dart';
+import 'package:ilunch/pages/gerais/profile_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
 
 class MenuItem {

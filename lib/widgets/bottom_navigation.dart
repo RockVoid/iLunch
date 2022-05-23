@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ilunch/pages/cupons_page.dart';
-import 'package:ilunch/pages/search_page.dart';
-import 'package:ilunch/pages/profile_page.dart';
-import 'package:ilunch/pages/home_page.dart';
-import 'package:ilunch/pages/store_administration_page.dart';
+import 'package:ilunch/pages/gerais/cupons_page.dart';
+import 'package:ilunch/pages/gerais/search_page.dart';
+import 'package:ilunch/pages/gerais/profile_page.dart';
+import 'package:ilunch/pages/gerais/home_page.dart';
+import 'package:ilunch/pages/vendedor/store_administration_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
 
 
