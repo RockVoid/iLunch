@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ilunch/pages/vendedor/product_vendedor_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/menu_buttons.dart';
 import 'package:ilunch/widgets/product_tile.dart';
+import 'package:ilunch/widgets/status_vendedor.dart';
 
-class StoreAdministrationPage extends StatelessWidget {
+class StoreAdministrationPage extends StatefulWidget {
   const StoreAdministrationPage({Key? key}) : super(key: key);
 
+  @override
+  State<StoreAdministrationPage> createState() => _StoreAdministrationPageState();
+}
+
+class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +31,7 @@ class StoreAdministrationPage extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 5,
                         blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
+                        offset: Offset(0, 3),
                       ),
                     ],
                     image: DecorationImage(
@@ -44,102 +51,111 @@ class StoreAdministrationPage extends StatelessWidget {
                       end: FractionalOffset.bottomCenter,
                       colors: [
                         Colors.black.withOpacity(0.4),
-                        Colors.black.withOpacity(0.6),
+                        Colors.black.withOpacity(0.7),
                       ],
                       stops: [0.0, 0.5],
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 21, right: 21, top: 100, bottom: 20),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(25),
-                          child: Image.network(
-                            'https://jpimg.com.br/uploads/2021/04/design-sem-nome-2021-04-23t115550.668.jpg',
-                            height: 80,
-                            width: 80,
-                            fit: BoxFit.cover,
+                  child: SafeArea(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: 21, right: 21, top: 0, bottom: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(25),
+                                child: Image.network(
+                                  'https://jpimg.com.br/uploads/2021/04/design-sem-nome-2021-04-23t115550.668.jpg',
+                                  height: 80,
+                                  width: 80,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Flexible(
+                                flex: 2,
+                                child: ListTile(
+                                  minVerticalPadding: 0,
+                                  isThreeLine: true,
+                                  minLeadingWidth: 0,
+                                  contentPadding: EdgeInsets.all(0),
+                                  title: Row(
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          'Alice Braga',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w600),
+                                          // textAlign: TextAlign.end,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 3,
+                                      ),
+                                      Icon(
+                                        Icons.verified,
+                                        color: Appthemes.primary,
+                                        size: 18,
+                                      )
+                                    ],
+                                  ),
+                                  subtitle: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    // mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '4,5',
+                                            style: GoogleFonts.poppins(
+                                                color: Appthemes.avaliationColor,
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          Icon(
+                                            Icons.star,
+                                            color: Appthemes.avaliationColor,
+                                            size: 13,
+                                          )
+                                        ],
+                                      ),
+                                      Text(
+                                        '+91 xxxxxxxxxxx',
+                                        style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      Text(
+                                        'alicebraga@gmail.com',
+                                        style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              MenuButtons(),
+                            ],
                           ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: ListTile(
-                            minVerticalPadding: 0,
-                            isThreeLine: true,
-                            minLeadingWidth: 0,
-                            contentPadding: EdgeInsets.all(0),
-                            title: Row(
-                              // crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    'Alice Braga',
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600),
-                                    // textAlign: TextAlign.end,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                Icon(
-                                  Icons.verified,
-                                  color: Appthemes.primary,
-                                  size: 18,
-                                )
-                              ],
-                            ),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      '4,5',
-                                      style: GoogleFonts.poppins(
-                                          color: Appthemes.avaliationColor,
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Appthemes.avaliationColor,
-                                      size: 13,
-                                    )
-                                  ],
-                                ),
-                                Text(
-                                  '+91 xxxxxxxxxxx',
-                                  style: GoogleFonts.poppins(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                Text(
-                                  'alicebraga@gmail.com',
-                                  style: GoogleFonts.poppins(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        MenuButtons(),
-                      ],
+                          SizedBox(height: 35,),
+                          StatusVendedor(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -157,6 +173,10 @@ class StoreAdministrationPage extends StatelessWidget {
                       vendedorButtons: true,
                       onPressedDelete: () {},
                       onPressedEdit: () {},
+                      onTap: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => ProductVendedorPage()));
+                      },
                       title: 'Trufa de ninho',
                       description:
                           'Uma tradicional coxinha sabor frango. Bastante deliciosa que foi feita com pimenta.',

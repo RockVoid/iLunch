@@ -84,15 +84,13 @@ class HistoricPage extends StatelessWidget {
                 for (var produto in produtosList)
                   Column(
                     children: [
-                      InkWell(
-                        child: ProductTile(
-                          title: produto.title,
-                          description: produto.description,
-                          value: produto.value,
-                          unity: produto.unity,
-                          linkImage: produto.linkImage,
-                        ),
-                        onTap: () { },
+                      ProductTile(
+                        title: produto.title,
+                        description: produto.description,
+                        value: produto.value,
+                        unity: produto.unity,
+                        linkImage: produto.linkImage,
+                        onTap: () {},
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20),
