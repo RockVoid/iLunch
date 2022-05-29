@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../themes/app_themes.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -49,63 +52,80 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Procure por sua refeição",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextField(
-              onChanged: (value) => updateList(value),
-              style: TextStyle(color: Colors.black),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide.none,
-                ),
-                hintText: "Ex: Brigadeiro",
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Procure por sua refeição",
+                style: GoogleFonts.poppins(textStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.bold),
+              )),
+              SizedBox(
+                height: 20,
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: display_list.length,
-                itemBuilder: (context, index) => ListTile(
-                  contentPadding: EdgeInsets.all(8.0),
-                  title: Text(display_list[index].comida_nome!,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  subtitle: Text(
-                    "RS ${display_list[index].comida_valor!}",
-                    style: TextStyle(color: Colors.grey[700]),
+              TextField(
+                onChanged: (value) => updateList(value),
+                
+                cursorColor: Appthemes.primary,
+                decoration: InputDecoration(
+                  hintText: "Ex: Brigadeiro",
+                  border: InputBorder.none,
+                  icon: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        child: Icon(
+                          Icons.search,
+                          color: Appthemes.primary,
+                        ),
+                      ),
+                      Center(
+                        child: Container(
+                          width: 1,
+                          height: 35,
+                          color: Appthemes.primary,
+                        ),
+                      )
+                    ],
                   ),
-                  trailing: Text("⭐ ${display_list[index].rating}"),
-                  leading: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
-                        display_list[index].comida_foto_url!,
-                        height: 150,
-                      )),
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: display_list.length,
+                  itemBuilder: (context, index) => ListTile(
+                    contentPadding: EdgeInsets.all(8.0),
+                    title: Text(display_list[index].comida_nome!,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    subtitle: Text(
+                      "RS ${display_list[index].comida_valor!}",
+                      style: TextStyle(color: Colors.grey[700]),
+                    ),
+                    trailing: Text("⭐ ${display_list[index].rating}"),
+                    leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          display_list[index].comida_foto_url!,
+                          height: 150,
+                        )),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

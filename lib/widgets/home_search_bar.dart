@@ -13,7 +13,7 @@ class HomeSearchBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: Appthemes.stroke,
         ),
-        child: TextField(
+        child: TextField(         
           cursorColor: Appthemes.primary,
           decoration: InputDecoration(
             hintText: "Item ou loja",
