@@ -41,7 +41,9 @@ class _SeeAllStatsState extends State<SeeAllStats> {
                   Text(
                     "Atividades",
                     style: GoogleFonts.poppins(
-                      fontSize: 35,
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ]),
