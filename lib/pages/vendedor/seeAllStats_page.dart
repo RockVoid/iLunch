@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'detailsSell_vendedor_page.dart';
 
 class SeeAllStats extends StatefulWidget {
   const SeeAllStats({Key? key}) : super(key: key);
@@ -37,7 +40,7 @@ class _SeeAllStatsState extends State<SeeAllStats> {
                   ),
                   Text(
                     "Atividades",
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 35,
                     ),
                   ),
@@ -54,19 +57,29 @@ class _SeeAllStatsState extends State<SeeAllStats> {
                         child: Column(children: [
                           for (String pedido in pedidos)
                             ListTile(
-                              title: Text(pedido),
+                              title: Text(
+                                pedido,
+                                style: GoogleFonts.poppins(),
+                              ),
                               subtitle: Text('12/12/2022'),
                               trailing: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text("R\$ 20,00"),
                                     SizedBox(width: 8),
-                                    Text(
-                                      'Detalhes',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.red),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DetailsSell()));
+                                      },
+                                      child: Text(
+                                        "Detalhes",
+                                        style: GoogleFonts.poppins(
+                                          color: Colors.red,
+                                        ),
+                                      ),
                                     ),
                                   ]),
                             ),

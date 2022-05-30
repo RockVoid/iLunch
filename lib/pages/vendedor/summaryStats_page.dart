@@ -1,5 +1,7 @@
+import 'package:ilunch/pages/vendedor/detailsSell_vendedor_page.dart';
 import 'package:ilunch/pages/vendedor/seeAllStats_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ResumoEstatisticasPage extends StatelessWidget {
   const ResumoEstatisticasPage({Key? key}) : super(key: key);
@@ -25,13 +27,19 @@ class ResumoEstatisticasPage extends StatelessWidget {
                       children: [
                         Text(
                           "Olá parceiro,",
-                          style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.w700),
+                          style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                         Text(
                           "Aqui está seu desempenho",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w700),
+                          style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ],
                     ),
@@ -51,15 +59,16 @@ class ResumoEstatisticasPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   child: Container(
                     child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Column(children: [
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'Últimas Atividades',
-                                style: TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.w700),
+                                style: GoogleFonts.poppins(
+                                    fontSize: 25, fontWeight: FontWeight.w600),
                               ),
                               TextButton(
                                 onPressed: () {
@@ -68,7 +77,7 @@ class ResumoEstatisticasPage extends StatelessWidget {
                                 },
                                 child: Text(
                                   "Ver tudo",
-                                  style: TextStyle(color: Colors.red),
+                                  style: GoogleFonts.poppins(color: Colors.red),
                                 ),
                               )
                             ],
@@ -80,55 +89,81 @@ class ResumoEstatisticasPage extends StatelessWidget {
                             title: Text('Pedido x'),
                             subtitle: Text('12/12/2022'),
                             trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  Text('RS 20,00'),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'Detalhes',
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.red),
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text('RS 20,00'),
+                                SizedBox(width: 8),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                DetailsSell()));
+                                  },
+                                  child: Text(
+                                    "Detalhes",
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.red,
+                                    ),
                                   ),
-                                ]),
+                                ),
+                              ],
+                            ),
                           ),
                           ListTile(
                             title: Text('Pedido x'),
                             subtitle: Text('12/12/2022'),
                             trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  Text('RS 20,00'),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'Detalhes',
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.red),
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text('RS 20,00'),
+                                SizedBox(width: 8),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                DetailsSell()));
+                                  },
+                                  child: Text(
+                                    "Detalhes",
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.red,
+                                    ),
                                   ),
-                                ]),
+                                ),
+                              ],
+                            ),
                           ),
 
                           ListTile(
                             title: Text('Pedido x'),
                             subtitle: Text('12/12/2022'),
                             trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  Text('RS 20,00'),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'Detalhes',
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.red),
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text('RS 20,00'),
+                                SizedBox(width: 8),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                DetailsSell()));
+                                  },
+                                  child: Text(
+                                    "Detalhes",
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.red,
+                                    ),
                                   ),
-                                ]),
+                                ),
+                              ],
+                            ),
                           ),
-                        ])),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -141,11 +176,11 @@ class ResumoEstatisticasPage extends StatelessWidget {
                     child: Padding(
                         padding: const EdgeInsets.all(22),
                         child: Column(children: [
-                          Row(children: const [
+                          Row(children: [
                             Text(
                               'Últimos 7 dias',
-                              style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.w700),
+                              style: GoogleFonts.poppins(
+                                  fontSize: 25, fontWeight: FontWeight.w600),
                             )
                           ]),
                           SizedBox(
@@ -158,16 +193,16 @@ class ResumoEstatisticasPage extends StatelessWidget {
                                 width: 10,
                               ),
                               Column(
-                                children: const [
+                                children: [
                                   Text(
                                     'Vendas',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600),
                                   ),
                                   Text(
                                     '10',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 20,
                                     ),
                                   ),
@@ -177,16 +212,16 @@ class ResumoEstatisticasPage extends StatelessWidget {
                                 width: 10,
                               ),
                               Column(
-                                children: const [
+                                children: [
                                   Text(
                                     'Lucro',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600),
                                   ),
                                   Text(
                                     'R\$ 100,00',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 20,
                                     ),
                                   ),
@@ -196,16 +231,16 @@ class ResumoEstatisticasPage extends StatelessWidget {
                                 width: 10,
                               ),
                               Column(
-                                children: const [
+                                children: [
                                   Text(
                                     'Média diária',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600),
                                   ),
                                   Text(
                                     'R\$ 100,00',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 20,
                                     ),
                                   ),
@@ -226,11 +261,11 @@ class ResumoEstatisticasPage extends StatelessWidget {
                     child: Padding(
                         padding: const EdgeInsets.all(22),
                         child: Column(children: [
-                          Row(children: const [
+                          Row(children: [
                             Text(
                               'Últimos 14 dias',
-                              style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.w700),
+                              style: GoogleFonts.poppins(
+                                  fontSize: 25, fontWeight: FontWeight.w600),
                             )
                           ]),
                           SizedBox(
@@ -243,16 +278,16 @@ class ResumoEstatisticasPage extends StatelessWidget {
                                 width: 10,
                               ),
                               Column(
-                                children: const [
+                                children: [
                                   Text(
                                     'Vendas',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600),
                                   ),
                                   Text(
                                     '10',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 20,
                                     ),
                                   ),
@@ -262,16 +297,16 @@ class ResumoEstatisticasPage extends StatelessWidget {
                                 width: 10,
                               ),
                               Column(
-                                children: const [
+                                children: [
                                   Text(
                                     'Lucro',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600),
                                   ),
                                   Text(
                                     'R\$ 100,00',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 20,
                                     ),
                                   ),
@@ -281,16 +316,16 @@ class ResumoEstatisticasPage extends StatelessWidget {
                                 width: 10,
                               ),
                               Column(
-                                children: const [
+                                children: [
                                   Text(
                                     'Média diária',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600),
                                   ),
                                   Text(
                                     'R\$ 100,00',
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 20,
                                     ),
                                   ),
