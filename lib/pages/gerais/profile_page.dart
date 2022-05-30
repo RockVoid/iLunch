@@ -281,9 +281,22 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 17,
               ),
               InkWell(
-                onTap: () {
-                  signOut();
-                },
+                onTap: () => showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text('Deseja realmente sair?'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Não'),
+                        child: const Text('Não'),
+                      ),
+                      TextButton(
+                        onPressed: () => signOut(),
+                        child: const Text('Sim'),
+                      ),
+                    ],
+                  ),
+                ),
                 child: Text(
                   'Sair',
                   style: GoogleFonts.poppins(
