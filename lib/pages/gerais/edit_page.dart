@@ -145,28 +145,6 @@ class _EditPageState extends State<EditPage> {
                     ]),
               ),
             ),
-            GestureDetector(
-              onTap: signOut,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Sair",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey[600]),
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.grey,
-                      )
-                    ]),
-              ),
-            ),
             Divider(
               height: 20,
               thickness: 1,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ilunch/themes/app_themes.dart';
 
 class productScreen extends StatefulWidget {
   const productScreen({Key? key}) : super(key: key);
@@ -11,11 +12,11 @@ class productScreen extends StatefulWidget {
 
 class _productScreenState extends State<productScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  int count = 0;
+  static int count = 1;
 
   void decrement() {
     setState(() {
-      count--;
+      if (count > 1) count--;
     });
   }
 
@@ -25,270 +26,259 @@ class _productScreenState extends State<productScreen> {
     });
   }
 
-  void zerar() {
-    setState(() {
-      count == Null;
-    });
-  }
-
-  bool get isEmpty => count == 0;
-  bool get isFull => count == 99;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Align(
-              alignment: AlignmentDirectional(0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
+        key: scaffoldKey,
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          padding: EdgeInsets.only(bottom: 80),
+          child: Column(
+            children: [
+              Stack(
                 children: [
-                  Image.network(
-                    'https://static-images.ifood.com.br/image/upload/t_medium/pratos/67b715be-fd94-4d46-9285-78f643700591/202003251115_ygzT_.jpeg',
-                    width: double.infinity,
-                    height: 150,
-                    fit: BoxFit.cover,
+                  Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            'https://static-images.ifood.com.br/image/upload/t_medium/pratos/67b715be-fd94-4d46-9285-78f643700591/202003251115_ygzT_.jpeg'),
+                        fit: BoxFit.fill,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    height: MediaQuery.of(context).size.height * 0.33,
+                    width: MediaQuery.of(context).size.width,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(-0.9, -0.56),
-                                child: Text(
-                                  'CAMARÃO ESPECIAL DON TALLENTO',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional(-0.9, -0.49),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 4),
-                                  child: Text(
-                                    'Serve até 2 pessoas',
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 345,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  color: Color(0x00EEEEEE),
-                                ),
-                                child: Text(
-                                    '\nEnvolvido com arroz cremoso ao molho branco e gratinado com queijo mussarela.\n\n',
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'R\$ 120,90',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.33,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      gradient: LinearGradient(
+                        begin: FractionalOffset.topCenter,
+                        end: FractionalOffset.bottomCenter,
+                        colors: [
+                          Colors.black.withOpacity(0.25),
+                          Colors.black.withOpacity(0.25),
                         ],
+                        stops: [0.0, 0.5],
+                      ),
+                    ),
+                  ),
+                  SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 22, vertical: 12),
+                      child:
+                          InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          width: 35,
+                          height: 35,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFFF0000),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            Icons.keyboard_arrow_down,
+                            color: Appthemes.background,
+                            size: 30,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(6, 0, 20, 0),
-              child: Align(
-                alignment: AlignmentDirectional(0, 0.9),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 22),
+                child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          IconButton(
-                            icon: const Icon(FontAwesomeIcons.minus, size: 18),
-                            color: const Color(0xFFFF0000),
-                            onPressed: isEmpty ? null : decrement,
+                    ListTile(
+                      minVerticalPadding: 20,
+                      contentPadding: EdgeInsets.all(0),
+                      isThreeLine: true,
+                      title: Text(
+                        'Camarão Especial Don Espetto',
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                      subtitle: Text.rich(
+                        TextSpan(
+                          text: 'Serve até 2 pessoa(s)\n',
+                          style: GoogleFonts.poppins(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                            height: 2,
                           ),
-                          Text(
-                            '$count',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                              fontSize: 18,
+                          children: [
+                            TextSpan(
+                              text:
+                                  'Envolvido com arroz cremoso ao molho branco e gratinado com queijo mussarela.\n',
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                color: Appthemes.greySubtitle,
+                                height: 0,
+                              ),
                             ),
-                          ),
-                          IconButton(
-                            icon: const Icon(FontAwesomeIcons.plus, size: 18),
-                            color: const Color(0xFFFF0000),
-                            onPressed: isFull ? null : increment,
-                          ),
-                        ],
+                            TextSpan(
+                              text: 'R\$ 1,99',
+                              style: GoogleFonts.poppins(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                                height: 2,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    Text(
-                      'R\$ 120,90',
-                      style: GoogleFonts.poppins(
-                        fontSize: 18,
-                      ),
+                    SizedBox(
+                      height: 70,
                     ),
-                    const SizedBox(height: 20),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: Stack(
-                        children: <Widget>[
-                          Positioned.fill(
-                            child: Container(color: const Color(0xFFFF0000)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 4),
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                padding: const EdgeInsets.all(16.0),
-                                primary: Colors.white,
-                                textStyle: GoogleFonts.poppins(
-                                  fontSize: 16,
+                    Container(
+                      // height: MediaQuery.of(context).size.height * 0.14,
+                      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                      decoration: BoxDecoration(
+                        // color: Colors.green,
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                flex: 3,
+                                child: Row(
+                                  // crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.food_bank_outlined,
+                                      color: Colors.black,
+                                      size: 24,
+                                    ),
+                                    Flexible(
+                                      flex: 4,
+                                      child: Text(
+                                        'Divina Picanha',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    Flexible(
+                                      flex: 1,
+                                      child: Icon(
+                                        Icons.verified,
+                                        color: Appthemes.primary,
+                                        size: 18,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              onPressed: () {},
-                              child: const Text('Adicionar'),
-                            ),
+                              Row(
+                                children: [
+                                  Text(
+                                    '4,5',
+                                    style: GoogleFonts.poppins(
+                                      color: Appthemes.avaliationColor,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: Appthemes.avaliationColor,
+                                    size: 20,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 50,
+                          ),
+                          Text(
+                            'Escadaria Bloco Central - Terreo - IFCE',
+                            style: GoogleFonts.poppins(
+                                color: Appthemes.greySubtitle),
                           ),
                         ],
                       ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            IconButton(
+                              icon:
+                                  const Icon(FontAwesomeIcons.minus, size: 18),
+                              color: const Color(0xFFFF0000),
+                              onPressed: decrement,
+                            ),
+                            Text(
+                              '$count',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.poppins(
+                                fontSize: 18,
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(FontAwesomeIcons.plus, size: 18),
+                              color: const Color(0xFFFF0000),
+                              onPressed: increment,
+                            ),
+                            Text(
+                              'R\$ ${(120.9 * count).toStringAsFixed(2)}',
+                              style: GoogleFonts.poppins(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text('Comprar'),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            primary: Appthemes.primary,
+                            elevation: 12,
+                            fixedSize: Size.fromWidth(100),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(-0.94, -0.98),
-              child: InkWell(
-                onTap: () async {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  width: 35,
-                  height: 35,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFFF0000),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Colors.black,
-                    size: 36,
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(0.07, 0.47),
-              child: Container(
-                width: 345,
-                height: 100,
-                decoration: BoxDecoration(
-                  color: Color(0x00EEEEEE),
-                  border: Border.all(
-                    color: Color(0xFF7C7C7C),
-                  ),
-                ),
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: AlignmentDirectional(0, -0.75),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.food_bank_outlined,
-                            color: Colors.black,
-                            size: 24,
-                          ),
-                          Text(
-                            'Divina Picanha   ',
-                            textAlign: TextAlign.start,
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Icon(
-                            Icons.check_circle_sharp,
-                            color: Color(0xFFFF0000),
-                            size: 16.5,
-                          ),
-                          Text(
-                            '                                               4,5',
-                            style: GoogleFonts.poppins(
-                              fontSize: 13,
-                            ),
-                          ),
-                          Icon(
-                            Icons.star_rate,
-                            color: Color(0xFFF9B405),
-                            size: 19,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional(0, 1.03),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            '  Escadaria Bloco Central - Terreo - IFCE',
-                            style: GoogleFonts.poppins(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+            ],
+          ),
+        ));
   }
 }
