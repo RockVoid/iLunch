@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ilunch/pages/gerais/profile_page.dart';
@@ -27,7 +28,7 @@ class MenuButtons extends StatelessWidget {
     switch (item.text) {
       case 'Configurações':
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ProfilePage()));
+            .push(MaterialPageRoute(builder: (context) => ProfilePage(true, uid: FirebaseAuth.instance.currentUser!.uid)));
         break;
       case 'Pedidos':
         // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));

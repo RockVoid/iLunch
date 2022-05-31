@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ilunch/model/vendedor_model.dart';
+import 'package:ilunch/model/buyer_user_model.dart';
 import 'package:ilunch/pages/cliente/loja_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
 
 class HomeItemVendedor extends StatelessWidget {
-  final Vendedor vendedor;
+  final BuyerUserModel vendedor;
   const HomeItemVendedor({Key? key, required this.vendedor}) : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class HomeItemVendedor extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              if (vendedor.name == 'Divina Picanha') {
+              if (vendedor.username == 'Divina Picanha') {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => Loja()));
               }
@@ -47,7 +47,7 @@ class HomeItemVendedor extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          vendedor.name,
+                          vendedor.username,
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w500,
                           ),

@@ -1,9 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ilunch/model/user_model.dart' as model;
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<model.UserModel> getUserDetails() async {
+    User currentUser = _auth.currentUser!;
+
+    DocumentSnapshot documentSnapshot =
+        await _firestore.collection('users').doc(currentUser.uid).get();
+
+    return model.UserModel.fromSnap(documentSnapshot);
+  }
 
   Future<String> signUpUser({
     required String email,
@@ -23,14 +33,18 @@ class AuthMethods {
             email: email,
             password: password,
           );
-          print(userCredential.user!.uid);
 
-          _firestore.collection('buyerUser').doc(userCredential.user!.uid).set({
-            "username": username,
-            "email": email,
-            "uid": userCredential.user!.uid,
-            'salesman': false,
-          });
+          model.UserModel _user = model.UserModel(
+            username: username,
+            email: email,
+            uid: userCredential.user!.uid,
+            salesman: 'true',
+          );
+
+          _firestore
+              .collection('Users')
+              .doc(userCredential.user!.uid)
+              .set(_user.toJson());
           return res = 'success';
         } else {
           return res = 'error-P';

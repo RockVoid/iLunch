@@ -19,7 +19,9 @@ class _LoginWidgtetState extends State<LoginWidgtet> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   String? _errorText;
-  bool _isLoading = false;
+  bool _isLoadingLoginEmail = false;
+  bool _isLoadingLoginFaceBook = false;
+  bool _isLoadingLoginGoogle = false;
 
   @override
   void dispose() {
@@ -43,14 +45,14 @@ class _LoginWidgtetState extends State<LoginWidgtet> {
 
   void loginUser() async {
     setState(() {
-      _isLoading = true;
+      _isLoadingLoginEmail = true;
     });
     String? res = await AuthMethods().loginUser(
       email: _emailController.text,
       password: _passwordController.text,
     );
     setState(() {
-      _isLoading = false;
+      _isLoadingLoginEmail = false;
     });
     if (res == 'success') {
       _emailController.text = '';
@@ -74,132 +76,155 @@ class _LoginWidgtetState extends State<LoginWidgtet> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          TextFieldInput(
-            textEditingController: _emailController,
-            hintText: 'Email',
-            errorText: TextError(_errorText),
-            textInputType: TextInputType.emailAddress,
-          ),
-          const SizedBox(height: 15),
-          TextFieldInput(
-            textEditingController: _passwordController,
-            hintText: 'Senha',
-            errorText: TextError(_errorText),
-            textInputType: TextInputType.visiblePassword,
-            isPass: true,
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              "Esqueceu a senha?",
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.normal,
-                  color: Appthemes.primary,
+      child: Padding(
+        padding: EdgeInsets.only(top: 40),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextFieldInput(
+              textEditingController: _emailController,
+              hintText: 'Email',
+              errorText: TextError(_errorText),
+              textInputType: TextInputType.emailAddress,
+            ),
+            const SizedBox(height: 15),
+            TextFieldInput(
+              textEditingController: _passwordController,
+              hintText: 'Senha',
+              errorText: TextError(_errorText),
+              textInputType: TextInputType.visiblePassword,
+              isPass: true,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 40),
+              child: TextButton(
+                onPressed: () {},
+                child: Text(
+                  "Esqueceu a senha?",
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                      color: Appthemes.primary,
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-          ElevatedButtonWidget(
-            onPressed: loginUser,
-            child: _isLoading
-                ? Center(
-                    child: CircularProgressIndicator(
-                      color: Appthemes.background,
-                    ),
-                  )
-                : Text(
-                    "Cadastro",
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.normal,
+            ElevatedButtonWidget(
+              onPressed: loginUser,
+              child: _isLoadingLoginEmail
+                  ? Center(
+                      child: CircularProgressIndicator(
                         color: Appthemes.background,
                       ),
+                    )
+                  : Text(
+                      "Login",
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal,
+                          color: Appthemes.background,
+                        ),
+                      ),
+                    ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 15),
+              child: Center(
+                child: Text(
+                  "ou",
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black,
                     ),
                   ),
-          ),
-           Padding(
-            padding: EdgeInsets.symmetric(vertical: 15),
-            child: Text(
-              "ou",
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.normal,
-                  color: Colors.black,
                 ),
               ),
             ),
-          ),
-          ElevatedButtonWidget(
-            onPressed: () {},
-            color: Appthemes.blueColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.facebook,
-                    size: 30,
-                  ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Login com o Facebook",
-                          style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.normal,
-                              color: Appthemes.background,
+            ElevatedButtonWidget(
+              onPressed: () {},
+              color: Appthemes.blueColor,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: _isLoadingLoginFaceBook
+
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: Appthemes.background,
+                        ),
+                      )
+                    : Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.facebook,
+                            size: 30,
+                          ),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Login com o Facebook",
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.normal,
+                                      color: Appthemes.background,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                        ],
+                      ),
               ),
             ),
-          ),
-          const SizedBox(height: 20),
-          ElevatedButtonWidget(
-            onPressed: () {},
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.google,
-                    size: 30,
-                  ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Login com o Google",
-                          style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.normal,
-                              color: Appthemes.background,
+            const SizedBox(height: 20),
+            ElevatedButtonWidget(
+              onPressed: () {},
+              bottom: 40,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: _isLoadingLoginGoogle
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: Appthemes.background,
+                        ),
+                      )
+                    : Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.google,
+                            size: 30,
+                          ),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Login com o Google",
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.normal,
+                                      color: Appthemes.background,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                        ],
+                      ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

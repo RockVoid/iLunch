@@ -1,11 +1,87 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/menu_buttons.dart';
 import 'package:ilunch/widgets/product_tile.dart';
 
-class StoreAdministrationPage extends StatelessWidget {
-  const StoreAdministrationPage({Key? key}) : super(key: key);
+import '../../widgets/show_snack_bar.dart';
+
+class StoreAdministrationPage extends StatefulWidget {
+  final String uid;
+
+  const StoreAdministrationPage({Key? key, required this.uid})
+      : super(key: key);
+
+  @override
+  State<StoreAdministrationPage> createState() =>
+      _StoreAdministrationPageState();
+}
+
+class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
+  Map<String, dynamic> userData = {};
+  bool isLoading = false;
+  bool hasImage = false;
+
+  getDataBuyer() async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      DocumentSnapshot<Map<String, dynamic>> userSnap = await FirebaseFirestore
+          .instance
+          .collection('buyerUser')
+          .doc(widget.uid)
+          .get();
+
+      userData = userSnap.data()!;
+      if (userData['image'] == null || userData['image'] == 'null') {
+        setState(() {
+          hasImage = false;
+        });
+      } else {
+        setState(() {
+          hasImage = true;
+        });
+      }
+      setState(() {});
+    } catch (e) {
+      ShowSnackBar(e.toString(), context);
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  String numberExist() {
+    String number;
+    if (userData['number'] == 'null' || userData['number'] == null) {
+      number = 'Adicione um número';
+    } else {
+      number = userData['number'];
+    }
+    return number;
+  }
+
+  String whereToBuyExist() {
+    String place;
+    if (userData['whereToBuy'] == 'null' || userData['whereToBuy'] == null) {
+      place = 'Adicione um local para comprar';
+    } else {
+      place = userData['whereToBuy'];
+    }
+    return place;
+  }
+
+  ImageProvider<Object> hasBackgroundImageFirebase() {
+    ImageProvider<Object> image;
+    if (hasImage) {
+      image = NetworkImage(userData['backgroundimage']);
+    } else {
+      image = AssetImage('assets/images/person_icon.png');
+    }
+    return image;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +104,7 @@ class StoreAdministrationPage extends StatelessWidget {
                       ),
                     ],
                     image: DecorationImage(
-                      image: NetworkImage(
-                          'https://diaonline.ig.com.br/wp-content/uploads/2019/01/doces-em-goiania-lugares-para-provar-verdadeiras-delicias-9.jpg'),
+                      image: hasBackgroundImageFirebase(),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -58,12 +133,19 @@ class StoreAdministrationPage extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(25),
-                          child: Image.network(
-                            'https://jpimg.com.br/uploads/2021/04/design-sem-nome-2021-04-23t115550.668.jpg',
-                            height: 80,
-                            width: 80,
-                            fit: BoxFit.cover,
-                          ),
+                          child: hasImage
+                              ? Image.network(
+                                  userData['image'],
+                                  height: 80,
+                                  width: 80,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.asset(
+                                  'assets/images/person_icon.png',
+                                  height: 80,
+                                  width: 80,
+                                  fit: BoxFit.cover,
+                                ),
                         ),
                         SizedBox(
                           width: 10,
