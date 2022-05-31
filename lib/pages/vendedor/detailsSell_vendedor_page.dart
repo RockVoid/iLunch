@@ -35,6 +35,16 @@ class DetailsSell extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              'Pedido',
+              style: GoogleFonts.poppins(
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -42,13 +52,20 @@ class DetailsSell extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Icon(
+                      Icons.restaurant_menu,
+                      color: Appthemes.primary,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
                     Flexible(
                       flex: 2,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Trufa de leite de ninho com leite',
+                            'Trufa de leite de ninho com leite de cabra',
                             style: GoogleFonts.poppins(
                                 fontSize: 14, fontWeight: FontWeight.w500),
                           ),
@@ -63,6 +80,9 @@ class DetailsSell extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(
+                      width: 5,
+                    ),
                     Expanded(
                       flex: 1,
                       child: ClipRRect(
@@ -75,6 +95,49 @@ class DetailsSell extends StatelessWidget {
                         ),
                       ),
                     ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Divider(
+              height: 40,
+              thickness: 0.4,
+              color: Colors.black,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Cliente',
+                  style: GoogleFonts.poppins(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.person,
+                      color: Appthemes.primary,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Flexible(
+                      child: Text(
+                        'Guilherme Alencar',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ],
