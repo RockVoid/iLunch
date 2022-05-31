@@ -1,53 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ilunch/model/pedido_model.dart';
 import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/product_tile.dart';
 
-class Product {
-  final String title;
-  final String description;
-  final double value;
-  final int unity;
-  final String linkImage;
-
-  Product(
-      {required this.title,
-      required this.description,
-      required this.value,
-      required this.unity,
-      required this.linkImage});
-}
 
 class HistoricPage extends StatelessWidget {
-  final List<Product> produtosList = [
-    Product(
-      title: 'trufa de ninho',
-      description:
-          'Uma trufa de cacau com recheio de ninho. Bastante deliciosa e feita com muito amor e carinho.',
-      value: 1.99,
-      unity: 1,
-      linkImage:
-          'https://www.receitascomida.com.br/wp-content/uploads/2018/08/trufas-de-leite-em-po_2263-610x300.jpg',
-    ),
-    Product(
-      title: 'Cachorro quente',
-      description:
-          'Cachorro quente caseiro, que leva em sua composição salsicha, molho, batata palha, milho e salsicha.',
-      value: 2.99,
-      unity: 1,
-      linkImage:
-          'https://www.montarumnegocio.com/wp-content/uploads/2018/02/Receita-de-cachorro-quente-para-vender-e-ganhar-dinheiro.jpg',
-    ),
-    Product(
-      title: 'Coxinha',
-      description: 'Uma tradicional coxinha sabor frango. Bastante deliciosa que foi feita com pimenta.',
-      value: 2.50,
-      unity: 1,
-      linkImage:
-          'http://www.dulcerestaurantecolonial.com.br/wp-content/uploads/2019/10/Coxinha-de-frango-A-verdade-sobre-a-origem-do-salgado-que-%C3%A9-paix%C3%A3o-nacional-Dulce-Caf%C3%A9-Colonial.jpg',
-    ),
-  ];
-
+  
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Colors.white,
@@ -76,34 +35,34 @@ class HistoricPage extends StatelessWidget {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22),
-            child: Column(
-              children: [
-                for (var produto in produtosList)
-                  Column(
-                    children: [
+        body:
+            StreamBuilder<List<PedidoModel>>(
+          stream: readPedidos(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Aconteceu algum erro!!  ${snapshot}');
+            } else if (snapshot.hasData) {
+              final pedidos = snapshot.data!;
+              return ListView(
+                padding: EdgeInsets.symmetric(horizontal: 21),
+                children: pedidos
+                    .map(
+                      (PedidoModel pedido) => 
                       ProductTile(
-                        title: produto.title,
-                        description: produto.description,
-                        value: produto.value,
-                        unity: produto.unity,
-                        linkImage: produto.linkImage,
+                        title: pedido.title,
+                        description: pedido.description,
+                        value: pedido.price,
+                        unity: pedido.unity,
+                        linkImage: pedido.linkImage,
                         onTap: () {},
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Divider(
-                          height: 2,
-                          thickness: 0.5,
-                        ),
-                      )
-                    ],
-                  ),
-              ],
-            ),
-          ),
+                    )
+                    .toList(),
+              );
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
         ),
       );
 }
