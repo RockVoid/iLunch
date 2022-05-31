@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ilunch/pages/gerais/cupons_page.dart';
 import 'package:ilunch/pages/gerais/search_page.dart';
-import 'package:ilunch/pages/gerais/profile_page.dart';
 import 'package:ilunch/pages/gerais/home_page.dart';
-import 'package:ilunch/pages/vendedor/store_administration_page.dart';
+import 'package:ilunch/pages/gerais/cupon_page.dart';
+//import 'package:ilunch/pages/vendedor/store_administration_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
-
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -18,9 +16,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final screens = [
     HomePage(),
     SearchPage(),
-    CuponsPage(),
-    // ProfilePage(),
-    StoreAdministrationPage(),
+    CuponPage(),
+    //StoreAdministrationPage(),
   ];
 
   @override

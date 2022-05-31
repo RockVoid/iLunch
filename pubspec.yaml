@@ -38,11 +38,13 @@ dependencies:
   firebase_core: ^1.16.0
   firebase_storage: ^10.2.15
   flutter_rating_bar: ^4.0.1
-  flutter_settings_screens: ^0.2.2+1
+  flutter_settings_screens: ^0.3.2-null-safety
   font_awesome_flutter: ^10.1.0
   google_fonts: ^2.3.2
   pixel_perfect: ^1.0.8
   animated_card: ^2.0.0
+  image_picker: ^0.8.5+3
+
 
 dev_dependencies:
   flutter_test:
