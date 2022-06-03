@@ -11,8 +11,10 @@ import '../../widgets/show_snack_bar.dart';
 class StoreAdministrationPage extends StatefulWidget {
   final String uid;
 
-  const StoreAdministrationPage({Key? key, required this.uid})
-      : super(key: key);
+  const StoreAdministrationPage({
+    Key? key,
+    required this.uid,
+  }) : super(key: key);
 
   @override
   State<StoreAdministrationPage> createState() =>
@@ -31,12 +33,12 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
     try {
       DocumentSnapshot<Map<String, dynamic>> userSnap = await FirebaseFirestore
           .instance
-          .collection('buyerUser')
+          .collection('BuyerUsers')
           .doc(widget.uid)
           .get();
 
       userData = userSnap.data()!;
-      if (userData['image'] == null || userData['image'] == 'null') {
+      if (userData['image'] == 'null') {
         setState(() {
           hasImage = false;
         });
@@ -56,7 +58,7 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
 
   String numberExist() {
     String number;
-    if (userData['number'] == 'null' || userData['number'] == null) {
+    if (userData['number'] == 'null') {
       number = 'Adicione um número';
     } else {
       number = userData['number'];
@@ -64,24 +66,20 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
     return number;
   }
 
-  String whereToBuyExist() {
-    String place;
-    if (userData['whereToBuy'] == 'null' || userData['whereToBuy'] == null) {
-      place = 'Adicione um local para comprar';
-    } else {
-      place = userData['whereToBuy'];
-    }
-    return place;
-  }
-
   ImageProvider<Object> hasBackgroundImageFirebase() {
     ImageProvider<Object> image;
     if (hasImage) {
-      image = NetworkImage(userData['backgroundimage']);
+      image = NetworkImage(userData['backgroundImage']);
     } else {
       image = AssetImage('assets/images/person_icon.png');
     }
     return image;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getDataBuyer();
   }
 
   @override
@@ -138,19 +136,23 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(25),
-                                child: hasImage
+                                child: isLoading
+                                    ? CircularProgressIndicator(
+                                  color: Appthemes.blackColor,
+                                )
+                                    : hasImage
                                     ? Image.network(
-                                        userData['image'],
-                                        height: 80,
-                                        width: 80,
-                                        fit: BoxFit.cover,
-                                      )
+                                  userData['image'],
+                                  height: 80,
+                                  width: 80,
+                                  fit: BoxFit.cover,
+                                )
                                     : Image.asset(
-                                        'assets/images/person_icon.png',
-                                        height: 80,
-                                        width: 80,
-                                        fit: BoxFit.cover,
-                                      ),
+                                  'assets/images/person_icon.png',
+                                  height: 80,
+                                  width: 80,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                               SizedBox(
                                 width: 10,
@@ -166,8 +168,12 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
                                     // crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Flexible(
-                                        child: Text(
-                                          'Alice Braga',
+                                        child: isLoading
+                                            ? CircularProgressIndicator(
+                                          color: Appthemes.blackColor,
+                                        )
+                                            : Text(
+                                          userData['username'],
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               color: Colors.white,
@@ -191,8 +197,12 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
                                     children: [
                                       Row(
                                         children: [
-                                          Text(
-                                            '4,5',
+                                          isLoading
+                                              ? CircularProgressIndicator(
+                                            color: Appthemes.blackColor,
+                                          )
+                                              : Text(
+                                            userData['stars'],
                                             style: GoogleFonts.poppins(
                                                 color: Appthemes.avaliationColor,
                                                 fontSize: 13,
@@ -205,16 +215,24 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
                                           )
                                         ],
                                       ),
-                                      Text(
-                                        '+91 xxxxxxxxxxx',
+                                      isLoading
+                                          ? CircularProgressIndicator(
+                                        color: Appthemes.blackColor,
+                                      )
+                                          : Text(
+                                        numberExist(),
                                         style: GoogleFonts.poppins(
                                           color: Colors.white,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      Text(
-                                        'alicebraga@gmail.com',
+                                      isLoading
+                                          ? CircularProgressIndicator(
+                                        color: Appthemes.blackColor,
+                                      )
+                                          : Text(
+                                        userData['email'],
                                         style: GoogleFonts.poppins(
                                           color: Colors.white,
                                           fontSize: 11,
@@ -255,11 +273,11 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
                       },
                       title: 'Trufa de ninho',
                       description:
-                          'Uma tradicional coxinha sabor frango. Bastante deliciosa que foi feita com pimenta.',
+                      'Uma tradicional coxinha sabor frango. Bastante deliciosa que foi feita com pimenta.',
                       value: 1.99,
                       unity: 1,
                       linkImage:
-                          'https://www.receitascomida.com.br/wp-content/uploads/2018/08/trufas-de-leite-em-po_2263-610x300.jpg'),
+                      'https://www.receitascomida.com.br/wp-content/uploads/2018/08/trufas-de-leite-em-po_2263-610x300.jpg'),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20),
                     child: Divider(
@@ -273,11 +291,11 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
                       onPressedEdit: () {},
                       title: 'Brownie',
                       description:
-                          'Um tradicional brownie de chocolate. Bastante delicioso.',
+                      'Um tradicional brownie de chocolate. Bastante delicioso.',
                       value: 2.99,
                       unity: 1,
                       linkImage:
-                          'https://receitatodahora.com.br/wp-content/uploads/2015/09/brownie.jpg'),
+                      'https://receitatodahora.com.br/wp-content/uploads/2015/09/brownie.jpg'),
                 ],
               ),
             )
