@@ -68,6 +68,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       passwordConfirm: _passwordConfirmController.text,
       username: _usernameController.text,
     );
+    print(res);
     setState(() {
       _isLoading = false;
     });

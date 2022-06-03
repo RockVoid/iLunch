@@ -12,11 +12,29 @@ import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/show_snack_bar.dart';
 
 class ProfilePage extends StatefulWidget {
+  final String uid;
+  final bool isBuyer;
+
+  const ProfilePage(this.isBuyer, {Key? key, required this.uid})
+      : super(key: key);
+
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  Map<String, dynamic> userData = {};
+  bool isLoading = false;
+  bool hasImage = false;
+
+  String isBuyerOrNot(bool isBuyer) {
+    if (isBuyer == 'true') {
+      return 'buyerUser';
+    } else {
+      return 'Users';
+    }
+  }
+
   void signOut() async {
     await AuthMethods().signOut();
     Navigator.of(context).pushReplacement(
@@ -27,79 +45,184 @@ class _ProfilePageState extends State<ProfilePage> {
     ShowSnackBar('Usuário desconectado', context);
   }
 
+  getData() async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      DocumentSnapshot<Map<String, dynamic>> userSnap = await FirebaseFirestore
+          .instance
+          .collection(isBuyerOrNot(widget.isBuyer))
+          .doc(widget.uid)
+          .get();
+
+      userData = userSnap.data()!;
+      if (userData['image'] == null || userData['image'] == 'null') {
+        setState(() {
+          hasImage = false;
+        });
+      } else {
+        setState(() {
+          hasImage = true;
+        });
+      }
+      setState(() {});
+    } catch (e) {
+      ShowSnackBar(e.toString(), context);
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  String numberExist() {
+    String number;
+    if (userData['number'] == 'null' || userData['number'] == null) {
+      number = 'Adicione um número';
+    } else {
+      number = userData['number'];
+    }
+    return number;
+  }
+
+  String whereToBuyExist() {
+    String place;
+    if (userData['whereToBuy'] == 'null' || userData['whereToBuy'] == null) {
+      place = 'Adicione um local para comprar';
+    } else {
+      place = userData['whereToBuy'];
+    }
+    return place;
+  }
+
+  String imageExist() {
+    String image;
+    if (userData['image'] == 'null' || userData['image'] == null) {
+      image = 'Adicione um local para comprar';
+    } else {
+      image = userData['image'];
+    }
+    return image;
+  }
+
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          centerTitle: true,
-          automaticallyImplyLeading: false,
-          backgroundColor: Color.fromARGB(245, 250, 250, 250),
-          titleSpacing: 14,
-          title: Text(
-            "Detalhes Pessoais",
-            style: GoogleFonts.roboto(
-                textStyle: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold)),
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            centerTitle: true,
+            automaticallyImplyLeading: false,
+            backgroundColor: Color.fromARGB(245, 250, 250, 250),
+            titleSpacing: 14,
+            title: Text(
+              "Detalhes Pessoais",
+              style: GoogleFonts.roboto(
+                  textStyle: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(
+                      MaterialPageRoute(builder: (context) => EditPage()));
+                },
+                icon: Icon(Icons.settings),
+                color: Colors.black,
+              )
+            ],
           ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => EditPage()));
-              },
-              icon: Icon(Icons.settings),
-              color: Colors.black,
-            )
-          ],
-        ),
-        body: ListView(children: [
+          body: ListView(
+              children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Center(
                 child: Column(
                   children: [
-                    Container(
+                    isLoading
+                        ? CircularProgressIndicator(
+                      color: Appthemes.blackColor,
+                    )
+                        : Container(
                       alignment: AlignmentDirectional.center,
                       width: 200.0,
                       child: Padding(
                         padding: const EdgeInsets.all(5),
                         child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child: Image.network(
-                              "https://imagens3.ne10.uol.com.br/blogsne10/social1/uploads/2019/11/Faust%C3%A3o-se-irrita-com-funcion%C3%A1rio-ao-vivo.jpg",
-                                height: 150,
-                            )),
+                          borderRadius: BorderRadius.circular(30),
+                          child: hasImage ?
+                          Image.network(
+                            userData['image'],
+                            height: 150,
+                          )
+                              : Image.asset(
+                            'assets/images/person_icon.png',
+                            height: 150,
+                          ),
+                        ),
                       ),
                     ),
                     SizedBox(
                       height: 16,
                     ),
-                    Text(
-                      "Guilherme Alencar",
+                    isLoading
+                        ? CircularProgressIndicator(
+                      color: Appthemes.blackColor,
+                    )
+                        : Text(
+                      userData['username'],
                       style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                              fontSize: 21)),
+                        textStyle: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                            fontSize: 21),
+                      ),
                     ),
-                    Text(
-                      "guilhermealencar@gmail.com",
+                    isLoading
+                        ? CircularProgressIndicator(
+                      color: Appthemes.blackColor,
+                    )
+                        : Text(
+                      userData['email'],
                       style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.grey.shade800, fontSize: 11)),
+                        textStyle: TextStyle(
+                            color: Colors.grey.shade800,
+                            fontSize: 11),
+                      ),
                     ),
-                    Text(
-                      "Rua do Benfica, 777",
+                    isLoading
+                        ? CircularProgressIndicator(
+                      color: Appthemes.blackColor,
+                    )
+                        : Text(
+                      whereToBuyExist(),
                       style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: Colors.grey.shade800, fontSize: 12)),
+                        textStyle: TextStyle(
+                            color: Colors.grey.shade800,
+                            fontSize: 12),
+                      ),
                     ),
-                    Text("+91 xxxxxxxxxx",
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                color: Colors.grey.shade800, fontSize: 12))),
+                    isLoading
+                        ? CircularProgressIndicator(
+                      color: Appthemes.blackColor,
+                    )
+                        : Text(
+                      numberExist(),
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            color: Colors.grey.shade800,
+                            fontSize: 12),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -198,33 +321,35 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: OutlinedButton(
                       onPressed: () {
                         Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => Help()));
+                          MaterialPageRoute(
+                            builder: (context) => Help(),),);
                       },
                       style: OutlinedButton.styleFrom(
                         shape: StadiumBorder(),
                         primary: Colors.black,
                         elevation: 1,
                         backgroundColor: Colors.white,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 13, horizontal: 22),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 13, horizontal: 22),
                       ),
                       child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Ajuda",
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Ajuda",
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                            Icon(
-                              Icons.arrow_forward_ios_outlined,
-                              size: 20,
-                            ),
-                          ]),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            size: 20,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -234,8 +359,8 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => FeedbackPage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => FeedbackPage()));
                 },
                 child: Text(
                   'Enviar um Feedback',
@@ -307,8 +432,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
               ),
-            ]),
+            ],
           ),
-        ]),
-      );
+            ),
+          ],
+        ),
+
+  );
 }

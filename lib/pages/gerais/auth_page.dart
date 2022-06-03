@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/login_widget.dart';
 import 'package:ilunch/widgets/signup_widget.dart';
 
@@ -9,8 +11,7 @@ class AuthPage extends StatefulWidget {
   State<AuthPage> createState() => _AuthPageState();
 }
 
-class _AuthPageState extends State<AuthPage>
-    with TickerProviderStateMixin {
+class _AuthPageState extends State<AuthPage> with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -26,31 +27,45 @@ class _AuthPageState extends State<AuthPage>
       appBar: AppBar(
         toolbarHeight: 200,
         centerTitle: true,
-        title: const Center(
+        title: Center(
           child: Text(
             "iLunch",
-            style: TextStyle(
-              color: Color(0xffea1d2c),
-              fontFamily: 'Roclwell',
-              fontSize: 55,
+            style: GoogleFonts.ultra(
+              textStyle: TextStyle(
+                color: Appthemes.primary,
+                fontSize: 55,
+              ),
             ),
           ),
         ),
         backgroundColor: const Color(0xfff6f6f6),
         bottom: TabBar(
           controller: _tabController,
-          indicatorColor: const Color(0xff1a1423),
-          tabs: const [
+          indicatorColor: Appthemes.primary,
+          indicatorPadding: EdgeInsets.symmetric(horizontal: 27),
+          tabs: [
             Center(
               child: Text(
                 "Login",
-                style: TextStyle(color: Color(0xff1a1423)),
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ),
             Center(
               child: Text(
                 "Cadastro",
-                style: TextStyle(color: Color(0xff1a1423)),
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ),
           ],

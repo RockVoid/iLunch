@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ilunch/model/vendedor_model.dart';
+import 'package:ilunch/model/buyer_user_model.dart';
 import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/home_item_vendedor.dart';
 import 'package:ilunch/widgets/home_search_bar.dart';
@@ -9,6 +9,7 @@ import 'package:ilunch/widgets/home_search_bar.dart';
 class Category {
   final String image;
   final String name;
+
   Category({required this.name, required this.image});
 }
 
@@ -38,34 +39,62 @@ class HomePage extends StatelessWidget {
             "https://catracalivre.com.br/wp-content/uploads/2018/02/cafe_kimrawicz.jpg"),
   ];
 
-  final List<Vendedor> vendedores = [
-    Vendedor(
-      name: 'Alice Braga',
+  final List<BuyerUserModel> vendedores = [
+    BuyerUserModel(
+      username: 'Alice Braga',
       stars: '4,5',
       category: 'Doces',
       image:
           'https://istoe.com.br/wp-content/uploads/sites/14/2022/03/ana-maria-braga-2-418x235.jpg',
+      uid: '',
+      salesman: '',
+      whereToBuy: '',
+      backgroundImage: '',
+      email: '',
+      number: '',
+      products: [],
     ),
-    Vendedor(
-      name: 'Gil da Esfirra',
+    BuyerUserModel(
+      username: 'Gil da Esfirra',
       stars: '5,0',
       category: 'Salgados',
       image:
           'https://conteudo.imguol.com.br/blogs/255/files/2019/06/875-1024x576.png',
+      uid: '',
+      salesman: '',
+      whereToBuy: '',
+      backgroundImage: '',
+      email: '',
+      number: '',
+      products: [],
     ),
-    Vendedor(
-      name: 'Divina Picanha',
+    BuyerUserModel(
+      username: 'Divina Picanha',
       stars: '4,8',
       category: 'Almoço',
       image:
           'https://static-images.ifood.com.br/image/upload/t_high/logosgde/67b715be-fd94-4d46-9285-78f643700591/202004281811_QSGV_.jpeg',
+      uid: '',
+      salesman: '',
+      whereToBuy: '',
+      backgroundImage: '',
+      email: '',
+      number: '',
+      products: [],
     ),
-    Vendedor(
-      name: 'Divina Sopas',
+    BuyerUserModel(
+      username: 'Divina Sopas',
       stars: '4,5',
       category: 'Almoço',
       image:
           'https://static-images.ifood.com.br/image/upload/t_high/logosgde/4d81fc37-846f-4cea-86c6-4baeb30d9930/202203170928_Rxst_.jpeg',
+      uid: '',
+      salesman: '',
+      whereToBuy: '',
+      backgroundImage: '',
+      email: '',
+      number: '',
+      products: [],
     ),
   ];
 
@@ -186,7 +215,7 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  for (Vendedor vendedor in vendedores)
+                  for (BuyerUserModel vendedor in vendedores)
                     HomeItemVendedor(vendedor: vendedor),
                 ],
               ),

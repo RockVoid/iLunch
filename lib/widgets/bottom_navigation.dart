@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ilunch/pages/gerais/cupons_page.dart';
 import 'package:ilunch/pages/gerais/search_page.dart';
+import 'package:ilunch/pages/gerais/profile_page.dart';
 import 'package:ilunch/pages/gerais/home_page.dart';
 import 'package:ilunch/pages/gerais/cupon_page.dart';
 import 'package:ilunch/pages/vendedor/store_administration_page.dart';
@@ -12,12 +16,46 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   int _currentIndex = 0;
+  static bool verifyBuyer = false;
+  Map<String, dynamic> userData = {};
 
-  final screens = [
+  bool isBuyerOrNot (String data){
+    if(data.toLowerCase() == 'true'){
+      return true;
+    } else{
+      return false;
+    }
+  }
+
+  void getBuyer() async {
+    try {
+      DocumentSnapshot<Map<String, dynamic>> userSnap = await FirebaseFirestore
+          .instance
+          .collection('Users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      userData = userSnap.data()!;
+      setState(() {
+        verifyBuyer = isBuyerOrNot(userData['salesman']);
+        if (verifyBuyer == true) {
+          screens.removeAt(3);
+          screens.add(StoreAdministrationPage(uid: userData['uid'],));
+        }
+      });
+    } catch (e) {}
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getBuyer();
+  }
+
+  List<Widget> screens = [
     HomePage(),
     SearchPage(),
-    CuponPage(),
-    StoreAdministrationPage(),
+    CuponsPage(),
+    ProfilePage(verifyBuyer, uid: FirebaseAuth.instance.currentUser!.uid,)
   ];
 
   @override
