@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ilunch/model/buyer_user_model.dart';
+import 'package:ilunch/pages/cliente/store_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/home_item_vendedor.dart';
 import 'package:ilunch/widgets/home_search_bar.dart';
@@ -39,65 +40,6 @@ class HomePage extends StatelessWidget {
             "https://catracalivre.com.br/wp-content/uploads/2018/02/cafe_kimrawicz.jpg"),
   ];
 
-  final List<BuyerUserModel> vendedores = [
-    BuyerUserModel(
-      username: 'Alice Braga',
-      stars: '4,5',
-      category: 'Doces',
-      image:
-          'https://istoe.com.br/wp-content/uploads/sites/14/2022/03/ana-maria-braga-2-418x235.jpg',
-      uid: '',
-      salesman: '',
-      whereToBuy: '',
-      backgroundImage: '',
-      email: '',
-      number: '',
-      products: [],
-    ),
-    BuyerUserModel(
-      username: 'Gil da Esfirra',
-      stars: '5,0',
-      category: 'Salgados',
-      image:
-          'https://conteudo.imguol.com.br/blogs/255/files/2019/06/875-1024x576.png',
-      uid: '',
-      salesman: '',
-      whereToBuy: '',
-      backgroundImage: '',
-      email: '',
-      number: '',
-      products: [],
-    ),
-    BuyerUserModel(
-      username: 'Divina Picanha',
-      stars: '4,8',
-      category: 'Almoço',
-      image:
-          'https://static-images.ifood.com.br/image/upload/t_high/logosgde/67b715be-fd94-4d46-9285-78f643700591/202004281811_QSGV_.jpeg',
-      uid: '',
-      salesman: '',
-      whereToBuy: '',
-      backgroundImage: '',
-      email: '',
-      number: '',
-      products: [],
-    ),
-    BuyerUserModel(
-      username: 'Divina Sopas',
-      stars: '4,5',
-      category: 'Almoço',
-      image:
-          'https://static-images.ifood.com.br/image/upload/t_high/logosgde/4d81fc37-846f-4cea-86c6-4baeb30d9930/202203170928_Rxst_.jpeg',
-      uid: '',
-      salesman: '',
-      whereToBuy: '',
-      backgroundImage: '',
-      email: '',
-      number: '',
-      products: [],
-    ),
-  ];
-
   final List<String> banners = [
     "https://static-images.ifood.com.br/image/upload/t_high,q_100/webapp/landing/landing-banner-1.png",
     "https://static-images.ifood.com.br/image/upload/t_high,q_100/webapp/landing/landing-banner-2.png",
@@ -108,121 +50,143 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 22),
-                child: Center(
-                  child: Text(
-                    'iLunch',
-                    style: GoogleFonts.ultra(
-                      fontSize: 32,
-                      color: Appthemes.primary,
+      body: 
+        StreamBuilder<List<BuyerUserModel>>(
+          stream: readBuyerUser(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(child: Text('Aconteceu algum erro!! ${snapshot}'));
+            } else if (snapshot.hasData) {
+              List<BuyerUserModel> vendedores = snapshot.data!;
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 22),
+                        child: Center(
+                          child: Text(
+                            'iLunch',
+                            style: GoogleFonts.ultra(
+                              fontSize: 32,
+                              color: Appthemes.primary,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
-            ),
-            HomeSearchBar(),
-            SizedBox(
-              height: 50,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 0),
-              child: Column(
-                children: [
-                  CarouselSlider(
-                    //Categorias
-                    options: CarouselOptions(
-                        height: 120,
-                        disableCenter: true,
-                        viewportFraction: 0.29,
-                        enableInfiniteScroll: false,
-                        padEnds: false),
-                    items: categoryList
-                        .map((e) => Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 5),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Column(
-                                  children: [
-                                    Image.network(
-                                      e.image,
-                                      height: 60,
-                                      fit: BoxFit.cover,
-                                    ),
-                                    SizedBox(
-                                      height: 2,
-                                    ),
-                                    Center(
-                                      child: Text(
-                                        e.name,
-                                        style:
-                                            GoogleFonts.poppins(fontSize: 12),
+                    HomeSearchBar(),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 0),
+                      child: Column(
+                        children: [
+                          CarouselSlider(
+                            //Categorias
+                            options: CarouselOptions(
+                                height: 120,
+                                disableCenter: true,
+                                viewportFraction: 0.29,
+                                enableInfiniteScroll: false,
+                                padEnds: false),
+                            items: categoryList
+                                .map((e) => Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 5),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: Column(
+                                          children: [
+                                            Image.network(
+                                              e.image,
+                                              height: 60,
+                                              fit: BoxFit.cover,
+                                            ),
+                                            SizedBox(
+                                              height: 2,
+                                            ),
+                                            Center(
+                                              child: Text(
+                                                e.name,
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 12),
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ))
-                        .toList(),
-                  ),
-                  CarouselSlider(
-                    //Banners
-                    options: CarouselOptions(
-                        height: 150,
-                        disableCenter: true,
-                        viewportFraction: 0.9,
-                        enableInfiniteScroll: false,
-                        padEnds: false),
-                    items: banners
-                        .map((e) => Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 11),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  e,
-                                  height: 70,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ))
-                        .toList(),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 22),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Vendedores',
-                    style: GoogleFonts.poppins(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
+                                    ))
+                                .toList(),
+                          ),
+                          CarouselSlider(
+                            //Banners
+                            options: CarouselOptions(
+                                height: 150,
+                                disableCenter: true,
+                                viewportFraction: 0.9,
+                                enableInfiniteScroll: false,
+                                padEnds: false),
+                            items: banners
+                                .map((e) => Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 11),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: Image.network(
+                                          e,
+                                          height: 70,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ))
+                                .toList(),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  for (BuyerUserModel vendedor in vendedores)
-                    HomeItemVendedor(vendedor: vendedor),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 22),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Vendedores',
+                            style: GoogleFonts.poppins(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          for (BuyerUserModel vendedor in vendedores)
+                            HomeItemVendedor(
+                              vendedor: vendedor,
+                              onTap: () {
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (context) => StorePage(vendedor: vendedor,)));
+                                
+                              },
+                            ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            } 
+            else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        ) 
+        // : Text('oi')
     );
   }
 }

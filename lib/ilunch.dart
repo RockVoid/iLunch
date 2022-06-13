@@ -17,6 +17,9 @@ class _iLunchState extends State<iLunch> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'iLunch',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {

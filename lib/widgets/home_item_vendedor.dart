@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ilunch/model/buyer_user_model.dart';
-import 'package:ilunch/pages/cliente/loja_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
 
 class HomeItemVendedor extends StatelessWidget {
   final BuyerUserModel vendedor;
-  const HomeItemVendedor({Key? key, required this.vendedor}) : super(key: key);
+  final VoidCallback onTap;
+  const HomeItemVendedor({Key? key, required this.vendedor, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 22),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          InkWell(
-            onTap: () {
-              if (vendedor.username == 'Divina Picanha') {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Loja()));
-              }
-            },
-            child: Row(
+      child: InkWell(
+        onTap: onTap,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
@@ -77,15 +72,15 @@ class HomeItemVendedor extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.favorite_border,
-              color: Appthemes.primary,
-            ),
-          )
-        ],
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.favorite_border,
+                color: Appthemes.primary,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -12,7 +12,7 @@ class BuyerUserModel {
   final String salesman;
   final String whereToBuy;
   final String number;
-  final List<ProductTile> products;
+  final List products;
 
   BuyerUserModel({
     required this.username,
@@ -60,3 +60,10 @@ class BuyerUserModel {
         "products": products,
       };
 }
+
+Stream<List<BuyerUserModel>> readBuyerUser() => FirebaseFirestore.instance
+    .collection('BuyerUsers')
+    .snapshots()
+    .map((snapshot) => snapshot.docs
+        .map((doc) => BuyerUserModel.fromSnap(doc))
+        .toList());
