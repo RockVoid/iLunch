@@ -13,7 +13,7 @@ class TextFieldInput extends StatelessWidget {
     Key? key,
     required this.textEditingController,
     required this.hintText,
-    required this.errorText,
+    this.errorText,
     required this.textInputType,
     this.isPass = false,
   }) : super(key: key);

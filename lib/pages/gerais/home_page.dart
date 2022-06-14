@@ -6,6 +6,8 @@ import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/home_item_vendedor.dart';
 import 'package:ilunch/widgets/home_search_bar.dart';
 
+import '../../themes/app_themes.dart';
+
 class Category {
   final String image;
   final String name;
@@ -43,7 +45,6 @@ class HomePage extends StatelessWidget {
     BuyerUserModel(
       username: 'Alice Braga',
       stars: '4,5',
-      category: 'Doces',
       image:
           'https://istoe.com.br/wp-content/uploads/sites/14/2022/03/ana-maria-braga-2-418x235.jpg',
       uid: '',
@@ -57,7 +58,6 @@ class HomePage extends StatelessWidget {
     BuyerUserModel(
       username: 'Gil da Esfirra',
       stars: '5,0',
-      category: 'Salgados',
       image:
           'https://conteudo.imguol.com.br/blogs/255/files/2019/06/875-1024x576.png',
       uid: '',
@@ -71,7 +71,6 @@ class HomePage extends StatelessWidget {
     BuyerUserModel(
       username: 'Divina Picanha',
       stars: '4,8',
-      category: 'Almoço',
       image:
           'https://static-images.ifood.com.br/image/upload/t_high/logosgde/67b715be-fd94-4d46-9285-78f643700591/202004281811_QSGV_.jpeg',
       uid: '',
@@ -85,7 +84,6 @@ class HomePage extends StatelessWidget {
     BuyerUserModel(
       username: 'Divina Sopas',
       stars: '4,5',
-      category: 'Almoço',
       image:
           'https://static-images.ifood.com.br/image/upload/t_high/logosgde/4d81fc37-846f-4cea-86c6-4baeb30d9930/202203170928_Rxst_.jpeg',
       uid: '',

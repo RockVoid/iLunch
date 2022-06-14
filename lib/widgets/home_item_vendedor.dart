@@ -4,6 +4,8 @@ import 'package:ilunch/model/buyer_user_model.dart';
 import 'package:ilunch/pages/cliente/loja_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
 
+import '../themes/app_themes.dart';
+
 class HomeItemVendedor extends StatelessWidget {
   final BuyerUserModel vendedor;
   const HomeItemVendedor({Key? key, required this.vendedor}) : super(key: key);
@@ -70,7 +72,6 @@ class HomeItemVendedor extends StatelessWidget {
                           Icons.star_rate_rounded,
                           color: Color(0xFFFFF9B405),
                         ),
-                        Text('• ${vendedor.category}')
                       ],
                     )
                   ],

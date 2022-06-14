@@ -5,6 +5,8 @@ import 'package:ilunch/pages/gerais/profile_page.dart';
 import 'package:ilunch/pages/vendedor/summaryStats_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
 
+import '../pages/vendedor/add_product_page.dart';
+
 class MenuItem {
   final String text;
   final IconData icon;
@@ -35,7 +37,7 @@ class MenuButtons extends StatelessWidget {
         // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
         break;
       case 'Novo Produto':
-        // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
+         Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddProductPage()));
         break;
       case 'Estatísticas':
         Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResumoEstatisticasPage()));
