@@ -12,33 +12,34 @@ class UserModel {
   UserModel({
     required this.username,
     required this.email,
-    this.image = 'null',
+    required this.image,
     required this.uid,
-    this.salesman = 'false',
-    this.whereToBuy = 'null',
-    this.number = 'null',
+    required this.salesman,
+    required this.whereToBuy,
+    required this.number,
   });
 
   static UserModel fromSnap(DocumentSnapshot snap) {
     var snapshot = snap.data() as Map<String, dynamic>;
 
     return UserModel(
-      username: snapshot["name"],
+      username: snapshot["username"],
       uid: snapshot["uid"],
       email: snapshot["email"],
       image: snapshot["image"],
       salesman: snapshot['salesman'],
       whereToBuy: snapshot['whereToBuy'],
+      number: snapshot['number'],
     );
   }
 
   Map<String, dynamic> toJson() => {
-    "username": username,
-    "uid": uid,
-    "email": email,
-    "image": image,
-    "salesman": salesman,
-    "whereToBuy": whereToBuy,
-  };
-
+        "username": username,
+        "uid": uid,
+        "email": email,
+        "image": image,
+        "salesman": salesman,
+        "whereToBuy": whereToBuy,
+        "number": number,
+      };
 }

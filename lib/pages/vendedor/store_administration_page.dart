@@ -138,21 +138,21 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
                                 borderRadius: BorderRadius.circular(25),
                                 child: isLoading
                                     ? CircularProgressIndicator(
-                                  color: Appthemes.blackColor,
-                                )
+                                        color: Appthemes.blackColor,
+                                      )
                                     : hasImage
-                                    ? Image.network(
-                                  userData['image'],
-                                  height: 80,
-                                  width: 80,
-                                  fit: BoxFit.cover,
-                                )
-                                    : Image.asset(
-                                  'assets/images/person_icon.png',
-                                  height: 80,
-                                  width: 80,
-                                  fit: BoxFit.cover,
-                                ),
+                                        ? Image.network(
+                                            userData['image'],
+                                            height: 80,
+                                            width: 80,
+                                            fit: BoxFit.cover,
+                                          )
+                                        : Image.asset(
+                                            'assets/images/person_icon.png',
+                                            height: 80,
+                                            width: 80,
+                                            fit: BoxFit.cover,
+                                          ),
                               ),
                               SizedBox(
                                 width: 10,
@@ -170,16 +170,17 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
                                       Flexible(
                                         child: isLoading
                                             ? CircularProgressIndicator(
-                                          color: Appthemes.blackColor,
-                                        )
+                                                color: Appthemes.blackColor,
+                                              )
                                             : Text(
-                                          userData['username'],
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w600),
-                                          // textAlign: TextAlign.end,
-                                        ),
+                                                userData['username'],
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 16,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                                // textAlign: TextAlign.end,
+                                              ),
                                       ),
                                       SizedBox(
                                         width: 3,
@@ -192,22 +193,25 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
                                     ],
                                   ),
                                   subtitle: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     // mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Row(
                                         children: [
                                           isLoading
                                               ? CircularProgressIndicator(
-                                            color: Appthemes.blackColor,
-                                          )
+                                                  color: Appthemes.blackColor,
+                                                )
                                               : Text(
-                                            userData['stars'],
-                                            style: GoogleFonts.poppins(
-                                                color: Appthemes.avaliationColor,
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w500),
-                                          ),
+                                                  userData['stars'],
+                                                  style: GoogleFonts.poppins(
+                                                      color: Appthemes
+                                                          .avaliationColor,
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
                                           Icon(
                                             Icons.star,
                                             color: Appthemes.avaliationColor,
@@ -217,28 +221,28 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
                                       ),
                                       isLoading
                                           ? CircularProgressIndicator(
-                                        color: Appthemes.blackColor,
-                                      )
+                                              color: Appthemes.blackColor,
+                                            )
                                           : Text(
-                                        numberExist(),
-                                        style: GoogleFonts.poppins(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
+                                              numberExist(),
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.white,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
                                       isLoading
                                           ? CircularProgressIndicator(
-                                        color: Appthemes.blackColor,
-                                      )
+                                              color: Appthemes.blackColor,
+                                            )
                                           : Text(
-                                        userData['email'],
-                                        style: GoogleFonts.poppins(
-                                          color: Colors.white,
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
+                                              userData['email'],
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.white,
+                                                fontSize: 11,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
                                     ],
                                   ),
                                 ),
@@ -246,7 +250,9 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
                               MenuButtons(),
                             ],
                           ),
-                          SizedBox(height: 35,),
+                          SizedBox(
+                            height: 35,
+                          ),
                           StatusVendedor(),
                         ],
                       ),
@@ -268,34 +274,35 @@ class _StoreAdministrationPageState extends State<StoreAdministrationPage> {
                       onPressedDelete: () {},
                       onPressedEdit: () {},
                       onTap: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => ProductVendedorPage()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ProductVendedorPage()));
                       },
                       title: 'Trufa de ninho',
                       description:
-                      'Uma tradicional coxinha sabor frango. Bastante deliciosa que foi feita com pimenta.',
+                          'Uma tradicional coxinha sabor frango. Bastante deliciosa que foi feita com pimenta.',
                       value: 1.99,
                       unity: 1,
                       linkImage:
-                      'https://www.receitascomida.com.br/wp-content/uploads/2018/08/trufas-de-leite-em-po_2263-610x300.jpg'),
+                          'https://www.receitascomida.com.br/wp-content/uploads/2018/08/trufas-de-leite-em-po_2263-610x300.jpg'),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20),
                     child: Divider(
-                      height: 2,
+                       height: 2,
                       thickness: 0.5,
                     ),
                   ),
                   ProductTile(
-                      vendedorButtons: true,
-                      onPressedDelete: () {},
-                      onPressedEdit: () {},
-                      title: 'Brownie',
-                      description:
-                      'Um tradicional brownie de chocolate. Bastante delicioso.',
-                      value: 2.99,
-                      unity: 1,
-                      linkImage:
-                      'https://receitatodahora.com.br/wp-content/uploads/2015/09/brownie.jpg'),
+                    vendedorButtons: true,
+                    onPressedDelete: () {},
+                    onPressedEdit: () {},
+                    title: 'Brownie',
+                    description:
+                        'Um tradicional brownie de chocolate. Bastante delicioso.',
+                    value: 2.99,
+                    unity: 1,
+                    linkImage:
+                        'https://receitatodahora.com.br/wp-content/uploads/2015/09/brownie.jpg',
+                  ),
                 ],
               ),
             )

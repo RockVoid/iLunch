@@ -36,9 +36,12 @@ class AuthMethods {
 
           model.UserModel _user = model.UserModel(
             username: username,
-            email: email,
+            email: email.toLowerCase(),
+            image: 'null',
             uid: userCredential.user!.uid,
-            salesman: 'true',
+            salesman: 'false',
+            whereToBuy: 'IFCE',
+            number: 'null',
           );
 
           _firestore

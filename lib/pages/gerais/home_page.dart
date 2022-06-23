@@ -7,6 +7,9 @@ import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/home_item_vendedor.dart';
 import 'package:ilunch/widgets/home_search_bar.dart';
 
+import '../../themes/app_themes.dart';
+
+
 class Category {
   final String image;
   final String name;
@@ -50,7 +53,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
+      body:
         StreamBuilder<List<BuyerUserModel>>(
           stream: readBuyerUser(),
           builder: (context, snapshot) {
@@ -171,7 +174,7 @@ class HomePage extends StatelessWidget {
                               onTap: () {
                                 Navigator.of(context).push(
                                     MaterialPageRoute(builder: (context) => StorePage(vendedor: vendedor,)));
-                                
+
                               },
                             ),
                         ],
@@ -180,12 +183,12 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               );
-            } 
+            }
             else {
               return Center(child: CircularProgressIndicator());
             }
           },
-        ) 
+        )
         // : Text('oi')
     );
   }

@@ -6,7 +6,6 @@ class BuyerUserModel {
   final String email;
   final String uid;
   final String stars;
-  final String category;
   final String image;
   final String backgroundImage;
   final String salesman;
@@ -19,7 +18,6 @@ class BuyerUserModel {
     required this.email,
     required this.uid,
     required this.stars,
-    required this.category,
     required this.image,
     required this.backgroundImage,
     required this.salesman,
@@ -36,7 +34,6 @@ class BuyerUserModel {
       email: snapshot["email"],
       uid: snapshot["uid"],
       stars: snapshot["stars"],
-      category: snapshot["category"],
       image: snapshot["image"],
       backgroundImage: snapshot["backgroundImage"],
       salesman: snapshot["salesman"],
@@ -51,7 +48,6 @@ class BuyerUserModel {
         "email": email,
         "uid": uid,
         "stars": stars,
-        "category": category,
         "image": image,
         "backgroundImage": backgroundImage,
         "salesman": salesman,
