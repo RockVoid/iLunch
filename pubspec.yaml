@@ -45,6 +45,7 @@ dependencies:
   animated_card: ^2.0.0
   image_picker: ^0.8.4+2
   uuid: ^3.0.5
+  mask_text_input_formatter: ^2.3.0
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ilunch/themes/app_themes.dart';
 
@@ -8,6 +9,7 @@ class TextFieldInput extends StatelessWidget {
   final String hintText;
   final String? errorText;
   final bool isPass;
+  final List<TextInputFormatter>? formatters;
 
   const TextFieldInput({
     Key? key,
@@ -16,6 +18,7 @@ class TextFieldInput extends StatelessWidget {
     this.errorText,
     required this.textInputType,
     this.isPass = false,
+    this.formatters,
   }) : super(key: key);
 
   @override
@@ -31,6 +34,7 @@ class TextFieldInput extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
         keyboardType: textInputType,
+        inputFormatters: formatters,
         obscureText: isPass,
         controller: textEditingController,
         decoration: InputDecoration(

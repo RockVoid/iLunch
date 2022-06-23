@@ -8,6 +8,7 @@ import 'package:ilunch/widgets/home_search_bar.dart';
 
 import '../../themes/app_themes.dart';
 
+
 class Category {
   final String image;
   final String name;

@@ -6,6 +6,8 @@ import 'package:ilunch/services/storage_methods.dart';
 import 'package:uuid/uuid.dart';
 import 'package:ilunch/model/buyer_user_model.dart' as model;
 
+import '../model/user_model.dart' as model;
+
 class FireStoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -19,13 +21,12 @@ class FireStoreMethods {
     int unity,
     Uint8List file,
   ) async {
-    // asking uid here because we dont want to make extra calls to firebase auth when we can just get from our state management
     String res = "Some error occurred";
     try {
       String productID = const Uuid().v1();
       String imageUrl = await StorageMethods()
           .uploadImageToStorage('products', file, productID);
-      // creates unique id based on time
+
       ProductModel product = ProductModel(
         title: title,
         buyerID: buyerID,
@@ -44,40 +45,60 @@ class FireStoreMethods {
     return res;
   }
 
-  Future<String> switchBuyerUser(
-    String username,
-    String email,
-    String buyerID,
-    String stars,
-    String whereToBuy,
-    String number,
-    Uint8List image,
-    Uint8List backgroundImage,
-    List products,
-  ) async {
-    // asking uid here because we dont want to make extra calls to firebase auth when we can just get from our state management
+  Future<String> switchBuyerUser({
+    required String username,
+    required String email,
+    required String buyerID,
+    required String stars,
+    required String whereToBuy,
+    required String number,
+    required Uint8List image,
+    required Uint8List backgroundImage,
+    required List products,
+  }) async {
     String res = "Some error occurred";
     try {
-      String imageUrl = await StorageMethods()
-          .uploadImageToStorage('BuyerUsers', image, buyerID);
-      String backgroundImageUrl = await StorageMethods()
-          .uploadImageToStorage('BuyerUsers', backgroundImage, buyerID);
+      if (username != "" || number != "") {
+        String imageUrl = await StorageMethods()
+            .uploadImageToStorage('BuyerUsers', image, buyerID);
+        String backgroundImageUrl = await StorageMethods()
+            .uploadImageToStorage('BuyerUsers', backgroundImage, buyerID);
 
-      model.BuyerUserModel _buyerUser = model.BuyerUserModel(
-        username: username,
-        email: email,
-        uid: buyerID,
-        salesman: 'true',
-        stars: stars,
-        image: imageUrl,
-        backgroundImage: backgroundImageUrl,
-        whereToBuy: whereToBuy,
-        number: number,
-        products: products,
-      );
+        model.BuyerUserModel _buyerUser = model.BuyerUserModel(
+          username: username,
+          email: email.toLowerCase(),
+          uid: buyerID,
+          salesman: 'true',
+          stars: stars,
+          image: imageUrl,
+          backgroundImage: backgroundImageUrl,
+          whereToBuy: 'IFCE',
+          number: number,
+          products: products,
+        );
 
-      _firestore.collection('BuyerUsers').doc(buyerID).set(_buyerUser.toJson());
-      res = "success";
+        _firestore
+            .collection('BuyerUsers')
+            .doc(buyerID)
+            .set(_buyerUser.toJson());
+
+        model.UserModel _user = model.UserModel(
+          username: username,
+          email: email.toLowerCase(),
+          image: imageUrl,
+          uid: buyerID,
+          salesman: 'true',
+          whereToBuy: 'IFCE',
+          number: number,
+        );
+
+        _firestore.collection('Users').doc(buyerID).update(_user.toJson());
+
+        res = "success";
+      } else {
+        res = "error-E";
+        return res;
+      }
     } catch (err) {
       res = err.toString();
     }
