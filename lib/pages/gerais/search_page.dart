@@ -49,6 +49,13 @@ class _SearchPageState extends State<SearchPage> {
     });
   }
 
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,12 +77,13 @@ class _SearchPageState extends State<SearchPage> {
                 height: 20,
               ),
               TextField(
+                autofocus: true,
                 onChanged: (value) => updateList(value),
-                
                 cursorColor: Appthemes.primary,
                 decoration: InputDecoration(
                   hintText: "Ex: Brigadeiro",
                   border: InputBorder.none,
+
                   icon: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -103,24 +111,27 @@ class _SearchPageState extends State<SearchPage> {
               Expanded(
                 child: ListView.builder(
                   itemCount: display_list.length,
-                  itemBuilder: (context, index) => ListTile(
-                    contentPadding: EdgeInsets.all(8.0),
-                    title: Text(display_list[index].comida_nome!,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        )),
-                    subtitle: Text(
-                      "RS ${display_list[index].comida_valor!}",
-                      style: TextStyle(color: Colors.grey[700]),
+                  itemBuilder: (context, index) => TextButton(
+                    onPressed: () {},
+                    child: ListTile(
+                      contentPadding: EdgeInsets.all(8.0),
+                      title: Text(display_list[index].comida_nome!,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      subtitle: Text(
+                        "RS ${display_list[index].comida_valor!}",
+                        style: TextStyle(color: Colors.grey[700]),
+                      ),
+                      trailing: Text("⭐ ${display_list[index].rating}"),
+                      leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            display_list[index].comida_foto_url!,
+                            height: 150,
+                          )),
                     ),
-                    trailing: Text("⭐ ${display_list[index].rating}"),
-                    leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          display_list[index].comida_foto_url!,
-                          height: 150,
-                        )),
                   ),
                 ),
               ),

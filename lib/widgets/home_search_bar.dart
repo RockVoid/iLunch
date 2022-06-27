@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ilunch/themes/app_themes.dart';
+import 'package:ilunch/widgets/bottom_navigation.dart';
 
 class HomeSearchBar extends StatelessWidget {
   const HomeSearchBar({Key? key}) : super(key: key);
@@ -13,7 +14,16 @@ class HomeSearchBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: Appthemes.stroke,
         ),
-        child: TextField(         
+        child: TextField(
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => BottomNavigation(
+                  primaryIndex: 1,
+                ),
+              ),
+            );
+          },
           cursorColor: Appthemes.primary,
           decoration: InputDecoration(
             hintText: "Item ou loja",

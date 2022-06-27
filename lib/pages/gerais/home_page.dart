@@ -7,9 +7,6 @@ import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/home_item_vendedor.dart';
 import 'package:ilunch/widgets/home_search_bar.dart';
 
-import '../../themes/app_themes.dart';
-
-
 class Category {
   final String image;
   final String name;
@@ -53,143 +50,144 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-        StreamBuilder<List<BuyerUserModel>>(
-          stream: readBuyerUser(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Center(child: Text('Aconteceu algum erro!! ${snapshot}'));
-            } else if (snapshot.hasData) {
-              List<BuyerUserModel> vendedores = snapshot.data!;
-              return SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SafeArea(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 22),
-                        child: Center(
-                          child: Text(
-                            'iLunch',
-                            style: GoogleFonts.ultra(
-                              fontSize: 32,
-                              color: Appthemes.primary,
-                            ),
+      body: StreamBuilder<List<BuyerUserModel>>(
+        stream: readBuyerUser(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Aconteceu algum erro!! ${snapshot}'));
+          } else if (snapshot.hasData) {
+            List<BuyerUserModel> vendedores = snapshot.data!;
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 22),
+                      child: Center(
+                        child: Text(
+                          'iLunch',
+                          style: GoogleFonts.ultra(
+                            fontSize: 32,
+                            color: Appthemes.primary,
                           ),
                         ),
                       ),
                     ),
-                    HomeSearchBar(),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0),
-                      child: Column(
-                        children: [
-                          CarouselSlider(
-                            //Categorias
-                            options: CarouselOptions(
-                                height: 120,
-                                disableCenter: true,
-                                viewportFraction: 0.29,
-                                enableInfiniteScroll: false,
-                                padEnds: false),
-                            items: categoryList
-                                .map((e) => Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 5),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(8),
-                                        child: Column(
-                                          children: [
-                                            Image.network(
-                                              e.image,
-                                              height: 60,
-                                              fit: BoxFit.cover,
+                  ),
+                  HomeSearchBar(),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 0),
+                    child: Column(
+                      children: [
+                        CarouselSlider(
+                          //Categorias
+                          options: CarouselOptions(
+                              height: 120,
+                              disableCenter: true,
+                              viewportFraction: 0.29,
+                              enableInfiniteScroll: false,
+                              padEnds: false),
+                          items: categoryList
+                              .map((e) => Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Column(
+                                        children: [
+                                          Image.network(
+                                            e.image,
+                                            height: 60,
+                                            fit: BoxFit.cover,
+                                          ),
+                                          SizedBox(
+                                            height: 2,
+                                          ),
+                                          Center(
+                                            child: Text(
+                                              e.name,
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 12),
                                             ),
-                                            SizedBox(
-                                              height: 2,
-                                            ),
-                                            Center(
-                                              child: Text(
-                                                e.name,
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 12),
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                          )
+                                        ],
                                       ),
-                                    ))
-                                .toList(),
-                          ),
-                          CarouselSlider(
-                            //Banners
-                            options: CarouselOptions(
-                                height: 150,
-                                disableCenter: true,
-                                viewportFraction: 0.9,
-                                enableInfiniteScroll: false,
-                                padEnds: false),
-                            items: banners
-                                .map((e) => Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 11),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(8),
-                                        child: Image.network(
-                                          e,
-                                          height: 70,
-                                          fit: BoxFit.cover,
-                                        ),
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
+                        CarouselSlider(
+                          //Banners
+                          options: CarouselOptions(
+                              height: 150,
+                              disableCenter: true,
+                              viewportFraction: 0.9,
+                              enableInfiniteScroll: false,
+                              padEnds: false),
+                          items: banners
+                              .map((e) => Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 11),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Image.network(
+                                        e,
+                                        height: 70,
+                                        fit: BoxFit.cover,
                                       ),
-                                    ))
-                                .toList(),
-                          ),
-                        ],
-                      ),
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 22),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Vendedores',
-                            style: GoogleFonts.poppins(
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                            ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 22),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Vendedores',
+                          style: GoogleFonts.poppins(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
                           ),
-                          SizedBox(
-                            height: 20,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        for (BuyerUserModel vendedor in vendedores)
+                          HomeItemVendedor(
+                            vendedor: vendedor,
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => StorePage(
+                                    vendedor: vendedor,
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                          for (BuyerUserModel vendedor in vendedores)
-                            HomeItemVendedor(
-                              vendedor: vendedor,
-                              onTap: () {
-                                Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (context) => StorePage(vendedor: vendedor,)));
-
-                              },
-                            ),
-                        ],
-                      ),
+                      ],
                     ),
-                  ],
-                ),
-              );
-            }
-            else {
-              return Center(child: CircularProgressIndicator());
-            }
-          },
-        )
-        // : Text('oi')
+                  ),
+                ],
+              ),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
     );
   }
 }
