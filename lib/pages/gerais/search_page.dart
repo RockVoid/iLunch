@@ -49,8 +49,6 @@ class _SearchPageState extends State<SearchPage> {
     });
   }
 
-
-
   @override
   void initState() {
     super.initState();
@@ -64,44 +62,50 @@ class _SearchPageState extends State<SearchPage> {
           padding: EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Procure por sua refeição",
-                style: GoogleFonts.poppins(textStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.bold),
-              )),
+              Text("Procure por sua refeição",
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w500,
+                      
+                    ),
+                  )),
               SizedBox(
-                height: 20,
+                height: 15,
               ),
-              TextField(
-                autofocus: true,
-                onChanged: (value) => updateList(value),
-                cursorColor: Appthemes.primary,
-                decoration: InputDecoration(
-                  hintText: "Ex: Brigadeiro",
-                  border: InputBorder.none,
-
-                  icon: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 18),
-                        child: Icon(
-                          Icons.search,
-                          color: Appthemes.primary,
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Appthemes.stroke,
+                ),
+                child: TextField(
+                  autofocus: true,
+                  onChanged: (value) => updateList(value),
+                  cursorColor: Appthemes.primary,
+                  decoration: InputDecoration(
+                    hintText: "Ex: Brigadeiro",
+                    border: InputBorder.none,
+                    icon: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 18),
+                          child: Icon(
+                            Icons.search,
+                            color: Appthemes.primary,
+                          ),
                         ),
-                      ),
-                      Center(
-                        child: Container(
-                          width: 1,
-                          height: 35,
-                          color: Appthemes.primary,
-                        ),
-                      )
-                    ],
+                        Center(
+                          child: Container(
+                            width: 1,
+                            height: 35,
+                            color: Appthemes.primary,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

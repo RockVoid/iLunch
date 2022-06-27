@@ -6,6 +6,7 @@ import 'package:ilunch/pages/cliente/store_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/home_item_vendedor.dart';
 import 'package:ilunch/widgets/home_search_bar.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Category {
   final String image;
@@ -169,10 +170,10 @@ class HomePage extends StatelessWidget {
                             vendedor: vendedor,
                             onTap: () {
                               Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => StorePage(
-                                    vendedor: vendedor,
-                                  ),
+                                PageTransition(
+                                  child: StorePage(vendedor: vendedor),
+                                  type: PageTransitionType.rightToLeft,
+                                  duration: const Duration(milliseconds: 450),
                                 ),
                               );
                             },

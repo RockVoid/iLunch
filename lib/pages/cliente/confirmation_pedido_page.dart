@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ilunch/pages/cliente/store_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
 
-class ConfirmationPedidoVendedorPage extends StatelessWidget {
-  const ConfirmationPedidoVendedorPage({Key? key}) : super(key: key);
+class ConfirmationPedidoPage extends StatelessWidget {
+  final ProductModelFake product;
+  const ConfirmationPedidoPage({Key? key, required this.product})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +14,7 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
       backgroundColor: Appthemes.background,
       appBar: AppBar(
         title: Text(
-          'Pedido',
+          'Confirmar pedido',
           style: GoogleFonts.poppins(
               color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500),
         ),
@@ -30,6 +33,25 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
           },
         ),
       ),
+      bottomNavigationBar: Row(
+        children: [
+          Expanded(
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                'Confirmar Pedido',
+                style: GoogleFonts.poppins(
+                    fontSize: 14, fontWeight: FontWeight.w600),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: Appthemes.primary,
+                elevation: 12,
+                fixedSize: Size(300, 65),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(right: 21, left: 21, top: 5, bottom: 60),
         child: Column(
@@ -40,15 +62,17 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(120),
                   child: Image.network(
-                    'https://imagens3.ne10.uol.com.br/blogsne10/social1/uploads/2019/11/Faust%C3%A3o-se-irrita-com-funcion%C3%A1rio-ao-vivo.jpg',
+                    product.vendedor.image,
                     height: 70,
+                    width: 70,
+                    fit: BoxFit.cover,
                   ),
                 ),
                 SizedBox(
                   width: 10,
                 ),
                 Text(
-                  'Guilherme Alencar',
+                  product.vendedor.username,
                   style: GoogleFonts.poppins(
                       fontSize: 16, fontWeight: FontWeight.w500),
                 ),
@@ -80,7 +104,7 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Trufa de leite de ninho com leite',
+                            product.title,
                             style: GoogleFonts.poppins(
                                 fontSize: 14, fontWeight: FontWeight.w500),
                           ),
@@ -88,7 +112,7 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            'R\$ 1,99  •  Quantidade:  1',
+                            'R\$ ${product.price}  •  Quantidade:  1200',
                             style: GoogleFonts.poppins(
                                 fontSize: 14, fontWeight: FontWeight.w500),
                           ),
@@ -100,9 +124,9 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
                         child: Image.network(
-                          'https://www.receitascomida.com.br/wp-content/uploads/2018/08/trufas-de-leite-em-po_2263-610x300.jpg',
+                          product.linkImage,
                           fit: BoxFit.cover,
-                          // height: 70,
+                          height: 60,
                           // width: 100,
                         ),
                       ),
@@ -140,7 +164,7 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
                     ),
                     Flexible(
                       child: Text(
-                        'Bloco Didático, sala 302, 2° andar',
+                        product.vendedor.whereToBuy,
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -178,7 +202,7 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
                           fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      'R\$ 19,99',
+                      'R\$ ${product.price}',
                       style: GoogleFonts.poppins(
                           fontSize: 14, fontWeight: FontWeight.w500),
                     ),
@@ -194,7 +218,7 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
                           fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      'R\$ 2,00',
+                      'R\$ 1,00',
                       style: GoogleFonts.poppins(
                           fontSize: 14, fontWeight: FontWeight.w500),
                     ),
@@ -210,7 +234,7 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
                           fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      'R\$ -2,00',
+                      '- R\$ 0,50',
                       style: GoogleFonts.poppins(
                           fontSize: 14, fontWeight: FontWeight.w500),
                     ),
@@ -228,7 +252,7 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
                           fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      'R\$ 17,99',
+                      'R\$ ${product.price + 1 - 0.5}',
                       style: GoogleFonts.poppins(
                           fontSize: 14, fontWeight: FontWeight.w500),
                     ),
@@ -255,23 +279,42 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
                   height: 10,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
-                      Icons.pix,
-                      color: Appthemes.primary,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
                     Flexible(
-                      child: Text(
-                        'Pix - Guilherme Alencar',
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.pix,
+                            color: Appthemes.primary,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Flexible(
+                            child: Text(
+                              'Pix - Guilherme Alencar',
+                              style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    )
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text('Trocar'),
+                      // style: ElevatedButton.styleFrom(
+                      //   shape: RoundedRectangleBorder(
+                      //     borderRadius: BorderRadius.circular(3),
+                      //   ),
+                      //   primary: Appthemes.primary,
+                      //   elevation: 12,
+                      //   fixedSize: Size.fromWidth(100),
+                      // ),
+                    ),
                   ],
                 ),
               ],
@@ -283,53 +326,6 @@ class ConfirmationPedidoVendedorPage extends StatelessWidget {
             ),
             SizedBox(
               height: 10,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Confirmar Pedido',
-                      style: GoogleFonts.poppins(
-                          fontSize: 14, fontWeight: FontWeight.w600),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      primary: Appthemes.primary,
-                      elevation: 12,
-                      fixedSize: Size(300, 45),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Rejeitar Pedido',
-                      style: GoogleFonts.poppins(
-                          fontSize: 14, fontWeight: FontWeight.w600),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      primary: Appthemes.primary,
-                      elevation: 12,
-                      fixedSize: Size(300, 45),
-                    ),
-                  ),
-                ),
-              ],
             ),
           ],
         ),

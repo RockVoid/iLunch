@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ilunch/pages/gerais/cupons_page.dart';
+import 'package:ilunch/pages/gerais/cupon_page.dart';
 import 'package:ilunch/pages/gerais/home_page.dart';
 import 'package:ilunch/pages/gerais/profile_page.dart';
 import 'package:ilunch/pages/gerais/search_page.dart';
@@ -67,7 +67,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   List<Widget> screens = [
     HomePage(),
     SearchPage(),
-    CuponsPage(),
+    CuponPage(),
     ProfilePage(
       verifyBuyer,
       uid: FirebaseAuth.instance.currentUser!.uid,

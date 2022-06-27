@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/material/bottom_navigation_bar.dart';
 
 class CuponPage extends StatefulWidget {
   const CuponPage({Key? key}) : super(key: key);
@@ -76,8 +75,7 @@ class _CuponPageState extends State<CuponPage> {
                                       borderRadius:
                                           BorderRadius.circular(10)))),
                           child: Text(
-                            //"Ilunch | Promoção de Dias das Mães",
-                            storedocs[i]['nome'],
+                            'iLunch | ${storedocs[i]['nome']}',
                             style: TextStyle(
                               fontSize: 15,
                             ),

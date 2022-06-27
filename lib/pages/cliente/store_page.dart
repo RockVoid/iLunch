@@ -5,6 +5,7 @@ import 'package:ilunch/model/buyer_user_model.dart';
 import 'package:ilunch/pages/cliente/product_page.dart';
 import 'package:ilunch/themes/app_themes.dart';
 import 'package:ilunch/widgets/product_tile.dart';
+import 'package:page_transition/page_transition.dart';
 
 class ProductModelFake {
   final String title;
@@ -38,6 +39,7 @@ class _StorePageState extends State<StorePage> {
   @override
   Widget build(BuildContext context) {
     const double percentOccupiedHeight = 0.15;
+    const int durationTransitionPage = 350;
 
     List<ProductModelFake> vendedorProductList = [
       ProductModelFake(
@@ -172,40 +174,42 @@ class _StorePageState extends State<StorePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
+                          Flexible(
+                            child: Text.rich(
+                              TextSpan(
                                 children: [
-                                  Text(
-                                    widget.vendedor.username,
+                                  TextSpan(
+                                    text: widget.vendedor.username,
                                     style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  Icon(
-                                    Icons.verified,
-                                    color: Appthemes.primary,
-                                    size: 15,
+                                  WidgetSpan(child: SizedBox(width: 2)),
+                                  WidgetSpan(
+                                    child: Icon(
+                                      Icons.verified,
+                                      color: Appthemes.primary,
+                                      size: 15,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: '\n${widget.vendedor.email}',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: '\n${widget.vendedor.number}',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
                                 ],
                               ),
-                              Text(
-                                widget.vendedor.email,
-                                style: GoogleFonts.poppins(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              Text(
-                                widget.vendedor.number,
-                                style: GoogleFonts.poppins(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                           ClipRRect(
                             child: Image.network(
@@ -286,7 +290,7 @@ class _StorePageState extends State<StorePage> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 30),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 30),
                     child: Divider(
                       height: 0,
                       thickness: 0.4,
@@ -300,10 +304,11 @@ class _StorePageState extends State<StorePage> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
+                  // ),
+                  SizedBox(height: 15),
                 ],
               ),
             ),
-            SizedBox(height: 18),
             Padding(
               padding: const EdgeInsets.only(
                 left: 10,
@@ -321,10 +326,14 @@ class _StorePageState extends State<StorePage> {
                           padding: const EdgeInsets.symmetric(horizontal: 5),
                           child: InkWell(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ProductPage(
-                                        product: e,
-                                      )));
+                              Navigator.of(context).push(
+                                PageTransition(
+                                  child: ProductPage(product: e),
+                                  type: PageTransitionType.bottomToTop,
+                                  duration: const Duration(
+                                      milliseconds: durationTransitionPage),
+                                ),
+                              );
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -406,10 +415,14 @@ class _StorePageState extends State<StorePage> {
                       unity: product.unity,
                       linkImage: product.linkImage,
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ProductPage(
-                                  product: product,
-                                )));
+                        Navigator.of(context).push(
+                          PageTransition(
+                            child: ProductPage(product: product),
+                            type: PageTransitionType.bottomToTop,
+                            duration: const Duration(
+                                milliseconds: durationTransitionPage),
+                          ),
+                        );
                       },
                     ),
                 ],
